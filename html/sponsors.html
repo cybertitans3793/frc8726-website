@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sponsors | CryptoHawks FRC 8726</title>
+  <meta name="description" content="The organizations and companies that make CryptoHawks FRC 8726 possible." />
+  <link rel="stylesheet" href="assets/style.css" />
+  <link rel="icon" href="assets/images/hawk-logo.png" type="image/png" />
+
+  <style>
+    /* ── Intro blurb ── */
+    .sponsors-intro {
+      max-width: 65ch;
+      padding: 3.5rem 0 3rem;
+    }
+
+    .sponsors-intro p {
+      font-size: 1.05rem;
+      color: var(--dark-gray);
+      margin-bottom: 1rem;
+    }
+
+    /* ── Tier section ── */
+    .tier-section {
+      padding: 3rem 0;
+      border-top: 1px solid #e2e2ea;
+    }
+
+    .tier-header {
+      display: flex;
+      align-items: center;
+      gap: 1.25rem;
+      margin-bottom: 2rem;
+    }
+
+    .tier-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-family: var(--font-title);
+      font-size: 0.85rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 0.35rem 1rem;
+      border-radius: 2px;
+      white-space: nowrap;
+    }
+
+    .tier-badge--azurite {
+      background: #1a3a5c;
+      color: #a8d8ea;
+      border: 1px solid #2a5a8c;
+    }
+
+    .tier-badge--platinum {
+      background: #4a4a5a;
+      color: #e8e8f0;
+      border: 1px solid #6a6a7a;
+    }
+
+    .tier-badge--gold {
+      background: #5a4500;
+      color: #ffd86e;
+      border: 1px solid #8a6800;
+    }
+
+    .tier-badge--silver {
+      background: #3a3a3a;
+      color: #c8c8c8;
+      border: 1px solid #5a5a5a;
+    }
+
+    .tier-badge--copper {
+      background: #4a2010;
+      color: #d4956a;
+      border: 1px solid #7a4020;
+    }
+
+    .tier-amount {
+      font-family: var(--font-body);
+      font-size: 0.8rem;
+      color: var(--urbana-gray);
+      letter-spacing: 0.05em;
+    }
+
+    /* ── Sponsor cards grid ── */
+    .sponsors-grid {
+      display: grid;
+      gap: 1.5rem;
+    }
+
+    .sponsors-grid--azurite  { grid-template-columns: repeat(1, 1fr); }
+    .sponsors-grid--platinum { grid-template-columns: repeat(2, 1fr); }
+    .sponsors-grid--gold     { grid-template-columns: repeat(3, 1fr); }
+    .sponsors-grid--silver   { grid-template-columns: repeat(3, 1fr); }
+    .sponsors-grid--copper   { grid-template-columns: repeat(4, 1fr); }
+
+    .sponsor-card {
+      background: var(--white);
+      border: 1px solid #e2e2ea;
+      border-radius: var(--radius);
+      padding: 2rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 1.25rem;
+      text-decoration: none;
+      transition: box-shadow var(--transition), transform var(--transition);
+      min-height: 180px;
+    }
+
+    .sponsor-card:hover {
+      box-shadow: var(--shadow);
+      transform: translateY(-2px);
+    }
+
+    .sponsor-card--no-link {
+      cursor: default;
+    }
+
+    .sponsor-card--no-link:hover {
+      box-shadow: var(--shadow-sm);
+      transform: none;
+    }
+
+    .sponsor-card__logo {
+      max-height: 90px;
+      max-width: 100%;
+      width: auto;
+      object-fit: contain;
+    }
+
+    /* Azurite cards get a little more presence */
+    .sponsors-grid--azurite .sponsor-card {
+      min-height: 220px;
+      padding: 2.5rem 3rem;
+    }
+
+    .sponsors-grid--azurite .sponsor-card__logo {
+      max-height: 120px;
+    }
+
+    .sponsor-card__name {
+      font-family: var(--font-body);
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--urbana-gray);
+      text-align: center;
+    }
+
+    /* ── Become a sponsor CTA ── */
+    .sponsor-cta-strip {
+      background: var(--urbana-blue);
+      border-radius: var(--radius);
+      padding: 2.5rem 3rem;
+      margin: 4rem 0 5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 2rem;
+    }
+
+    .sponsor-cta-strip__text h3 {
+      color: var(--white);
+      font-size: 1.4rem;
+      margin-bottom: 0.4rem;
+    }
+
+    .sponsor-cta-strip__text p {
+      color: var(--light-gray);
+      font-size: 0.95rem;
+      max-width: none;
+    }
+
+    /* ── Tier table ── */
+    .tier-table-section {
+      padding: 0 0 5rem;
+    }
+
+    .tier-table-section h2 {
+      color: var(--urbana-blue);
+      margin-bottom: 0.5rem;
+    }
+
+    .tier-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 1.5rem;
+      font-family: var(--font-body);
+      font-size: 0.9rem;
+    }
+
+    .tier-table th {
+      font-family: var(--font-title);
+      font-size: 0.8rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--urbana-blue);
+      text-align: left;
+      padding: 0.75rem 1rem;
+      border-bottom: 2px solid var(--urbana-blue);
+    }
+
+    .tier-table td {
+      padding: 0.85rem 1rem;
+      border-bottom: 1px solid #e2e2ea;
+      color: var(--dark-gray);
+      vertical-align: middle;
+    }
+
+    .tier-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    .tier-table tr:hover td {
+      background: #f4f4f8;
+    }
+
+    .tier-table .tier-name-cell {
+      font-weight: 700;
+      color: var(--black);
+    }
+
+    @media (max-width: 860px) {
+      .sponsors-grid--platinum,
+      .sponsors-grid--gold,
+      .sponsors-grid--silver,
+      .sponsors-grid--copper {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .sponsor-cta-strip {
+        flex-direction: column;
+        text-align: center;
+        padding: 2rem;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .sponsors-grid--azurite,
+      .sponsors-grid--platinum,
+      .sponsors-grid--gold,
+      .sponsors-grid--silver,
+      .sponsors-grid--copper {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ══ HEADER ══════════════════════════════════════════ -->
+  <header class="site-header">
+    <div class="container">
+      <a href="index.html" class="header-brand">
+        <img
+          src="assets/images/hawk-logo.png"
+          alt="CryptoHawks Logo"
+          class="header-brand__logo"
+          onerror="this.style.display='none'"
+        />
+        <div class="header-brand__text">
+          <span class="header-brand__name">CryptoHawks</span>
+          <span class="header-brand__number">FRC Team 8726</span>
+        </div>
+      </a>
+
+      <button class="nav-toggle" aria-label="Toggle navigation" onclick="toggleNav()">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+      <nav class="site-nav" id="site-nav">
+        <a href="index.html"    class="site-nav__link">Home</a>
+        <a href="team.html"     class="site-nav__link">Team</a>
+        <a href="robots.html"   class="site-nav__link">Robots</a>
+        <a href="sponsors.html" class="site-nav__link active">Sponsors</a>
+        <a href="outreach.html" class="site-nav__link">Outreach</a>
+        <a href="blog.html"     class="site-nav__link">Blog</a>
+        <a href="calendar.html" class="site-nav__link">Calendar</a>
+        <a href="contact.html"  class="site-nav__link">Contact</a>
+        <a href="join.html"     class="site-nav__link site-nav__link--cta">Get Involved</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ══ PAGE HERO ════════════════════════════════════════ -->
+  <section class="page-hero">
+    <div class="container">
+      <p class="page-hero__label">Our supporters</p>
+      <h1 class="page-hero__title">Sponsors</h1>
+      <p class="page-hero__sub">The organizations that make it all possible.</p>
+    </div>
+  </section>
+
+  <main>
+    <div class="container">
+
+      <!-- ── Intro ── -->
+      <div class="sponsors-intro">
+        <p>
+          Running a competitive FRC team costs approximately $25,000 per season. 
+          Our sponsors make that possible — and in doing so, they invest directly 
+          in the students of Urbana High School and the future of STEM in our community.
+        </p>
+        <p>
+          We are grateful to every organization that has chosen to support the CryptoHawks. 
+          Their logos appear on our robot, our team apparel, and right here.
+        </p>
+      </div>
+
+      <!-- ══ AZURITE TIER ═══════════════════════════════════ -->
+      <div class="tier-section">
+        <div class="tier-header">
+          <span class="tier-badge tier-badge--azurite">Azurite</span>
+          <span class="tier-amount">$5,000 and above</span>
+        </div>
+        <div class="sponsors-grid sponsors-grid--azurite">
+
+          <a href="https://marylandpublicschools.org" class="sponsor-card" target="_blank" rel="noopener" aria-label="Maryland State Department of Education">
+            <img src="assets/images/sponsors/msde.png" alt="Maryland State Department of Education" class="sponsor-card__logo" />
+            <span class="sponsor-card__name">Maryland State Department of Education</span>
+          </a>
+
+        </div>
+      </div>
+
+      <!-- ══ PLATINUM TIER ══════════════════════════════════ -->
+      <div class="tier-section">
+        <div class="tier-header">
+          <span class="tier-badge tier-badge--platinum">Platinum</span>
+          <span class="tier-amount">$2,500 – $4,999</span>
+        </div>
+        <div class="sponsors-grid sponsors-grid--platinum">
+
+          <a href="https://www.ghaasfoundation.org" class="sponsor-card" target="_blank" rel="noopener" aria-label="Gene Haas Foundation">
+            <img src="assets/images/sponsors/gene_haas.png" alt="Gene Haas Foundation" class="sponsor-card__logo" />
+            <span class="sponsor-card__name">Gene Haas Foundation</span>
+          </a>
+
+          <div class="sponsor-card sponsor-card--no-link" aria-label="Urbana High School Student Government Association">
+            <img src="assets/images/sponsors/uhs.png" alt="Urbana High School Student Government Association" class="sponsor-card__logo" />
+            <span class="sponsor-card__name">Urbana High School Student Government Association</span>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- ══ SILVER TIER ════════════════════════════════════ -->
+      <div class="tier-section">
+        <div class="tier-header">
+          <span class="tier-badge tier-badge--silver">Silver</span>
+          <span class="tier-amount">$500 – $999</span>
+        </div>
+        <div class="sponsors-grid sponsors-grid--silver">
+
+          <a href="https://shieldcoart.com" class="sponsor-card" target="_blank" rel="noopener" aria-label="ShieldCo">
+            <img src="assets/images/sponsors/shieldcologo.png" alt="ShieldCo" class="sponsor-card__logo" />
+            <span class="sponsor-card__name">ShieldCo</span>
+          </a>
+
+        </div>
+      </div>
+
+      <!-- ══ BECOME A SPONSOR CTA ═══════════════════════════ -->
+      <div class="sponsor-cta-strip">
+        <div class="sponsor-cta-strip__text">
+          <h3>Become a Sponsor</h3>
+          <p>Interested in supporting the CryptoHawks? We'd love to have you on board.</p>
+        </div>
+        <a href="join.html#sponsors" class="btn btn--white">Learn More</a>
+      </div>
+
+      <!-- ══ TIER TABLE ══════════════════════════════════════ -->
+      <div class="tier-table-section">
+        <p class="section-label">Sponsorship tiers</p>
+        <h2>How to Support the Team</h2>
+        <hr class="divider" />
+
+        <table class="tier-table">
+          <thead>
+            <tr>
+              <th>Tier</th>
+              <th>Amount</th>
+              <th>Recognition</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="tier-name-cell">Azurite</td>
+              <td>$5,000+</td>
+              <td>Logo on robot, apparel, and website · Featured placement</td>
+            </tr>
+            <tr>
+              <td class="tier-name-cell">Platinum</td>
+              <td>$2,500 – $4,999</td>
+              <td>Logo on robot, apparel, and website</td>
+            </tr>
+            <tr>
+              <td class="tier-name-cell">Gold</td>
+              <td>$1,000 – $2,499</td>
+              <td>Logo on robot and website</td>
+            </tr>
+            <tr>
+              <td class="tier-name-cell">Silver</td>
+              <td>$500 – $999</td>
+              <td>Logo on website · Name on apparel</td>
+            </tr>
+            <tr>
+              <td class="tier-name-cell">Copper</td>
+              <td>Up to $499</td>
+              <td>Name on website</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- ══ FOOTER ═══════════════════════════════════════════ -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-brand">
+        <p class="footer-brand__name">CryptoHawks</p>
+        <p class="footer-brand__tag">FRC Team 8726 · Urbana High School · Ijamsville, MD</p>
+        <p class="footer-brand__motto">"One Team, One Urbana"</p>
+      </div>
+
+      <div class="footer-col">
+        <p class="footer-col__title">Navigate</p>
+        <a href="index.html">Home</a>
+        <a href="team.html">Team</a>
+        <a href="robots.html">Robots</a>
+        <a href="sponsors.html">Sponsors</a>
+        <a href="outreach.html">Outreach</a>
+        <a href="blog.html">Blog</a>
+        <a href="calendar.html">Calendar</a>
+        <a href="contact.html">Contact</a>
+        <a href="join.html">Get Involved</a>
+      </div>
+
+      <div class="footer-col">
+        <p class="footer-col__title">Contact</p>
+        <a href="mailto:urbanahsrobotics@gmail.com">urbanahsrobotics@gmail.com</a>
+        <a href="mailto:joshua.holmes@fcps.org">joshua.holmes@fcps.org</a>
+
+        <p class="footer-col__title" style="margin-top:1.25rem;">Follow Us</p>
+        <a href="https://www.instagram.com/uhsrobotics" target="_blank" rel="noopener">Instagram</a>
+        <a href="https://github.com/cryptohawks8726" target="_blank" rel="noopener">GitHub</a>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="footer-bottom">
+        <p>&copy; 2024 CryptoHawks FRC 8726 · Urbana High School</p>
+        <p>Built by the CryptoHawks Partner Relations Sub-Team</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    function toggleNav() {
+      document.getElementById('site-nav').classList.toggle('open');
+    }
+
+    document.querySelectorAll('.site-nav__link').forEach(link => {
+      link.addEventListener('click', () => {
+        document.getElementById('site-nav').classList.remove('open');
+      });
+    });
+  </script>
+
+</body>
+</html>
