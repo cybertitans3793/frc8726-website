@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Outreach | CryptoHawks FRC 8726</title>
+  <meta name="description" content="CryptoHawks FRC 8726 community outreach — STEM nights, summer camps, and the Frederick FLL Qualifier." />
+  <link rel="stylesheet" href="assets/style.css" />
+  <link rel="icon" href="assets/images/hawk-logo.png" type="image/png" />
+
+  <style>
+    /* ── Intro ── */
+    .outreach-intro {
+      padding: 3.5rem 0 3rem;
+      max-width: 65ch;
+    }
+
+    .outreach-intro p {
+      font-size: 1.05rem;
+      color: var(--dark-gray);
+    }
+
+    /* ── Event sections ── */
+    .event-section {
+      padding: 4rem 0;
+      border-top: 1px solid #e2e2ea;
+    }
+
+    .event-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3.5rem;
+      align-items: center;
+    }
+
+    .event-grid--reverse .event-text { order: 2; }
+    .event-grid--reverse .event-photo { order: 1; }
+
+    /* Text side */
+    .event-text h2 {
+      color: var(--urbana-blue);
+      margin-bottom: 0.75rem;
+    }
+
+    .event-text p {
+      color: var(--dark-gray);
+      margin-bottom: 1rem;
+      font-size: 1rem;
+    }
+
+    /* Photo side */
+    .event-photo {
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+    }
+
+    .event-photo img {
+      width: 100%;
+      height: 320px;
+      object-fit: cover;
+      display: block;
+    }
+
+    /* FLL gets two photos */
+    .event-photo-pair {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.75rem;
+    }
+
+    .event-photo-pair .event-photo img {
+      height: 220px;
+    }
+
+    /* ── Stat strip for FLL ── */
+    .fll-stats {
+      display: flex;
+      gap: 2rem;
+      margin-top: 1.5rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid #e2e2ea;
+    }
+
+    .fll-stat {
+      display: flex;
+      flex-direction: column;
+      gap: 0.2rem;
+    }
+
+    .fll-stat__number {
+      font-family: var(--font-title);
+      font-size: 2rem;
+      color: var(--urbana-blue);
+      line-height: 1;
+    }
+
+    .fll-stat__label {
+      font-family: var(--font-body);
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--urbana-gray);
+    }
+
+    /* ── Newsletter signup ── */
+    .newsletter-section {
+      background: var(--urbana-blue);
+      padding: 5rem 0;
+      margin-top: 2rem;
+    }
+
+    .newsletter-inner {
+      display: grid;
+      grid-template-columns: 1fr 1.2fr;
+      gap: 4rem;
+      align-items: start;
+    }
+
+    .newsletter-text h2 {
+      color: var(--white);
+      margin-bottom: 0.75rem;
+    }
+
+    .newsletter-text p {
+      color: var(--light-gray);
+      font-size: 1rem;
+      margin-bottom: 1rem;
+    }
+
+    .newsletter-text .newsletter-note {
+      font-size: 0.82rem;
+      color: var(--urbana-gray);
+      font-style: italic;
+    }
+
+    .newsletter-form-wrap {
+      background: var(--white);
+      border-radius: var(--radius);
+      overflow: hidden;
+    }
+
+    .newsletter-form-wrap iframe {
+      width: 100%;
+      height: 480px;
+      border: none;
+      display: block;
+    }
+
+    @media (max-width: 860px) {
+      .event-grid,
+      .event-grid--reverse {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+
+      .event-grid--reverse .event-text,
+      .event-grid--reverse .event-photo {
+        order: unset;
+      }
+
+      .newsletter-inner {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+
+      .event-photo img {
+        height: 240px;
+      }
+
+      .event-photo-pair .event-photo img {
+        height: 160px;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .event-photo-pair {
+        grid-template-columns: 1fr;
+      }
+
+      .fll-stats {
+        flex-wrap: wrap;
+        gap: 1.25rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ══ HEADER ══════════════════════════════════════════ -->
+  <header class="site-header">
+    <div class="container">
+      <a href="index.html" class="header-brand">
+        <img
+          src="assets/images/hawk-logo.png"
+          alt="CryptoHawks Logo"
+          class="header-brand__logo"
+          onerror="this.style.display='none'"
+        />
+        <div class="header-brand__text">
+          <span class="header-brand__name">CryptoHawks</span>
+          <span class="header-brand__number">FRC Team 8726</span>
+        </div>
+      </a>
+
+      <button class="nav-toggle" aria-label="Toggle navigation" onclick="toggleNav()">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+      <nav class="site-nav" id="site-nav">
+        <a href="index.html"    class="site-nav__link">Home</a>
+        <a href="team.html"     class="site-nav__link">Team</a>
+        <a href="robots.html"   class="site-nav__link">Robots</a>
+        <a href="sponsors.html" class="site-nav__link">Sponsors</a>
+        <a href="outreach.html" class="site-nav__link active">Outreach</a>
+        <a href="blog.html"     class="site-nav__link">Blog</a>
+        <a href="calendar.html" class="site-nav__link">Calendar</a>
+        <a href="contact.html"  class="site-nav__link">Contact</a>
+        <a href="join.html"     class="site-nav__link site-nav__link--cta">Get Involved</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ══ PAGE HERO ════════════════════════════════════════ -->
+  <section class="page-hero">
+    <div class="container">
+      <p class="page-hero__label">In the community</p>
+      <h1 class="page-hero__title">Outreach</h1>
+      <p class="page-hero__sub">Inspiring the next generation of scientists, engineers, and problem-solvers.</p>
+    </div>
+  </section>
+
+  <main>
+    <div class="container">
+
+      <!-- ── Intro ── -->
+      <div class="outreach-intro">
+        <p>
+          The CryptoHawks believe that robotics and STEM education shouldn't stop 
+          at the lab door. We actively work to bring hands-on science and engineering 
+          experiences to students throughout the Urbana community — from elementary 
+          school classrooms to full-scale competitions.
+        </p>
+      </div>
+
+      <!-- ══ STEM NIGHTS ════════════════════════════════════ -->
+      <div class="event-section">
+        <div class="event-grid">
+
+          <div class="event-text">
+            <p class="section-label">Community Events</p>
+            <h2>STEM Nights &amp; School Visits</h2>
+            <hr class="divider" />
+            <p>
+              Throughout the year, CryptoHawks members visit local schools and 
+              community events to run hands-on STEM activities for younger students. 
+              These events give kids a chance to see robotics up close, ask questions, 
+              and get excited about engineering and technology.
+            </p>
+            <p>
+              Our students lead the activities — teaching, demonstrating, and mentoring 
+              younger kids in the same way they were once introduced to STEM themselves.
+            </p>
+          </div>
+
+          <div class="event-photo">
+            <img
+              src="assets/images/outreach/STEM_Night.jpg"
+              alt="CryptoHawks students running a STEM night activity"
+            />
+          </div>
+
+        </div>
+      </div>
+
+      <!-- ══ SUMMER CAMPS ═══════════════════════════════════ -->
+      <div class="event-section">
+        <div class="event-grid event-grid--reverse">
+
+          <div class="event-text">
+            <p class="section-label">Workshops</p>
+            <h2>Summer Camps &amp; Workshops</h2>
+            <hr class="divider" />
+            <p>
+              During the summer, the CryptoHawks run workshops that introduce students 
+              to robotics through hands-on building challenges. Participants get to 
+              design, build, and test their own creations — with CryptoHawks students 
+              right there to guide them through it.
+            </p>
+            <p>
+              These workshops are designed to be accessible and fun regardless of 
+              prior experience. No background in robotics or engineering required — 
+              just curiosity.
+            </p>
+          </div>
+
+          <div class="event-photo">
+            <img
+              src="assets/images/outreach/LEGO.jpg"
+              alt="Students working on a robotics workshop activity"
+            />
+          </div>
+
+        </div>
+      </div>
+
+      <!-- ══ FLL TOURNAMENT ════════════════════════════════ -->
+      <div class="event-section">
+        <div class="event-grid">
+
+          <div class="event-text">
+            <p class="section-label">FIRST Lego League</p>
+            <h2>Frederick Qualifier Event</h2>
+            <hr class="divider" />
+            <p>
+              Each season, the CryptoHawks host the <em>FIRST</em> Lego League 
+              Frederick Qualifier at Urbana High School. This full-day event brings 
+              together elementary and middle school teams from across the region to 
+              compete with their LEGO robots, present research projects, and 
+              demonstrate their core values.
+            </p>
+            <p>
+              CryptoHawks students serve as referees, scorekeepers, and volunteers — 
+              gaining leadership experience while giving younger students their first 
+              taste of competitive robotics.
+            </p>
+
+            <div class="fll-stats">
+              <div class="fll-stat">
+                <span class="fll-stat__number">~30</span>
+                <span class="fll-stat__label">Teams Competing</span>
+              </div>
+              <div class="fll-stat">
+                <span class="fll-stat__number">UHS</span>
+                <span class="fll-stat__label">Host Location</span>
+              </div>
+              <div class="fll-stat">
+                <span class="fll-stat__number">FLL</span>
+                <span class="fll-stat__label">FIRST Lego League</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="event-photo-pair">
+            <div class="event-photo">
+              <img
+                src="assets/images/outreach/FLL_Big.jpg"
+                alt="Frederick FLL Qualifier event at Urbana High School gymnasium"
+              />
+            </div>
+            <div class="event-photo">
+              <img
+                src="assets/images/outreach/FLL_Close.jpg"
+                alt="Students competing at the Frederick FLL Qualifier"
+              />
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div><!-- /.container -->
+
+    <!-- ══ NEWSLETTER SIGNUP ═════════════════════════════ -->
+    <section class="newsletter-section">
+      <div class="container">
+        <div class="newsletter-inner">
+
+          <div class="newsletter-text">
+            <p class="section-label" style="color:var(--urbana-gray);">Stay connected</p>
+            <h2>STEM Newsletter</h2>
+            <hr class="divider divider--white" />
+            <p>
+              Sign up to receive updates on upcoming STEM events, outreach 
+              opportunities, and CryptoHawks activities in the Urbana community.
+            </p>
+            <p>
+              We send occasional emails when something exciting is coming up — 
+              no spam, just STEM.
+            </p>
+            <p class="newsletter-note">
+              This list is open to parents, educators, and anyone interested 
+              in STEM opportunities in the Urbana area.
+            </p>
+          </div>
+
+          <div class="newsletter-form-wrap">
+            <iframe
+              src="https://docs.google.com/forms/d/e/1FAIpQLSdU0rFV0qJV61QlejBXwHa9nR6ovSZSjldpkJHOmr9viC3Cnw/viewform?embedded=true"
+              frameborder="0"
+              marginheight="0"
+              marginwidth="0">
+              Loading…
+            </iframe>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ══ FOOTER ═══════════════════════════════════════════ -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-brand">
+        <p class="footer-brand__name">CryptoHawks</p>
+        <p class="footer-brand__tag">FRC Team 8726 · Urbana High School · Ijamsville, MD</p>
+        <p class="footer-brand__motto">"One Team, One Urbana"</p>
+      </div>
+
+      <div class="footer-col">
+        <p class="footer-col__title">Navigate</p>
+        <a href="index.html">Home</a>
+        <a href="team.html">Team</a>
+        <a href="robots.html">Robots</a>
+        <a href="sponsors.html">Sponsors</a>
+        <a href="outreach.html">Outreach</a>
+        <a href="blog.html">Blog</a>
+        <a href="calendar.html">Calendar</a>
+        <a href="contact.html">Contact</a>
+        <a href="join.html">Get Involved</a>
+      </div>
+
+      <div class="footer-col">
+        <p class="footer-col__title">Contact</p>
+        <a href="mailto:urbanahsrobotics@gmail.com">urbanahsrobotics@gmail.com</a>
+        <a href="mailto:joshua.holmes@fcps.org">joshua.holmes@fcps.org</a>
+
+        <p class="footer-col__title" style="margin-top:1.25rem;">Follow Us</p>
+        <a href="https://www.instagram.com/uhsrobotics" target="_blank" rel="noopener">Instagram</a>
+        <a href="https://github.com/cryptohawks8726" target="_blank" rel="noopener">GitHub</a>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="footer-bottom">
+        <p>&copy; 2024 CryptoHawks FRC 8726 · Urbana High School</p>
+        <p>Built by the CryptoHawks Partner Relations Sub-Team</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    function toggleNav() {
+      document.getElementById('site-nav').classList.toggle('open');
+    }
+
+    document.querySelectorAll('.site-nav__link').forEach(link => {
+      link.addEventListener('click', () => {
+        document.getElementById('site-nav').classList.remove('open');
+      });
+    });
+  </script>
+
+</body>
+</html>
