@@ -321,7 +321,7 @@ p {
   font-family: var(--font-body);
   font-size: 1.05rem;
   color: var(--light-gray);
-  max-width: 55ch;
+  max-width: 80ch;
 }
 
 /* ── Buttons ─────────────────────────────────────────────── */
