@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Robots | CryptoHawks FRC 8726</title>
+  <meta name="description" content="Every robot the CryptoHawks have built — from Peanut Butter Crackers to today." />
+  <link rel="stylesheet" href="assets/style.css" />
+  <link rel="icon" href="assets/images/hawk-logo.png" type="image/png" />
+
+  <style>
+    /* ── Hero banner ── */
+    .robots-banner {
+      width: 100%;
+      max-height: 460px;
+      object-fit: cover;
+      object-position: center 40%;
+      display: block;
+    }
+
+    /* ── Section headings ── */
+    .robots-section {
+      padding: 4rem 0 2rem;
+    }
+
+    .robots-section__intro {
+      max-width: 60ch;
+      color: var(--dark-gray);
+      font-size: 1rem;
+      margin-top: 0.75rem;
+      max-width: none;
+    }
+
+    /* ── Robot cards grid ── */
+    .robot-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+      margin-top: 2.5rem;
+      padding-bottom: 5rem;
+    }
+
+    .robot-card {
+      background: var(--white);
+      border: 1px solid #e2e2ea;
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+      transition: box-shadow var(--transition), transform var(--transition);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .robot-card:hover {
+      box-shadow: var(--shadow);
+      transform: translateY(-3px);
+    }
+
+    /* Featured card (current season) spans 2 columns */
+    .robot-card--featured {
+      grid-column: span 2;
+      flex-direction: row;
+    }
+
+    .robot-card--featured .robot-card__photo {
+      width: 55%;
+      flex-shrink: 0;
+    }
+
+    .robot-card--featured .robot-card__photo img {
+      height: 100%;
+      min-height: 300px;
+    }
+
+    .robot-card--featured .robot-card__body {
+      padding: 2rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .robot-card--featured .robot-card__name {
+      font-size: 2rem;
+    }
+
+    /* Photo */
+    .robot-card__photo {
+      overflow: hidden;
+      background: #f4f4f8;
+    }
+
+    .robot-card__photo img {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.4s ease;
+    }
+
+    .robot-card:hover .robot-card__photo img {
+      transform: scale(1.03);
+    }
+
+    /* Body */
+    .robot-card__body {
+      padding: 1.25rem 1.5rem 1.5rem;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .robot-card__year {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--urbana-gray);
+      font-family: var(--font-body);
+      margin-bottom: 0.3rem;
+    }
+
+    .robot-card__name {
+      font-family: var(--font-title);
+      font-size: 1.4rem;
+      color: var(--urbana-blue);
+      letter-spacing: 0.03em;
+      margin-bottom: 0.25rem;
+    }
+
+    .robot-card__name--tbd {
+      color: var(--urbana-gray);
+      font-style: italic;
+    }
+
+    .robot-card__game {
+      font-family: var(--font-body);
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--blue-alt);
+      margin-bottom: 0.85rem;
+    }
+
+    .robot-card__desc {
+      font-family: var(--font-body);
+      font-size: 0.875rem;
+      color: var(--dark-gray);
+      line-height: 1.6;
+      flex: 1;
+      max-width: none;
+    }
+
+    .robot-card__desc em {
+      color: var(--urbana-gray);
+      font-style: italic;
+    }
+
+    /* ── BunnyBots section ── */
+    .bunnybots-section {
+      background: #f4f4f8;
+      border-top: 1px solid #e2e2ea;
+      padding: 4rem 0 5rem;
+    }
+
+    .bunnybots-explainer {
+      background: var(--urbana-blue);
+      border-radius: var(--radius);
+      padding: 1.75rem 2rem;
+      margin: 1.5rem 0 2.5rem;
+      display: flex;
+      align-items: flex-start;
+      gap: 1.25rem;
+    }
+
+    .bunnybots-explainer__icon {
+      font-size: 2rem;
+      flex-shrink: 0;
+      line-height: 1;
+    }
+
+    .bunnybots-explainer__text {
+      font-family: var(--font-body);
+      font-size: 0.9rem;
+      color: var(--light-gray);
+      line-height: 1.65;
+      max-width: none;
+    }
+
+    .bunnybots-explainer__text strong {
+      color: var(--white);
+    }
+
+    .bunny-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+
+    /* Smaller cards for bunnybots */
+    .bunny-card {
+      background: var(--white);
+      border: 1px solid #e2e2ea;
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+      transition: box-shadow var(--transition), transform var(--transition);
+    }
+
+    .bunny-card:hover {
+      box-shadow: var(--shadow);
+      transform: translateY(-2px);
+    }
+
+    .bunny-card__photo img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.4s ease;
+    }
+
+    .bunny-card:hover .bunny-card__photo img {
+      transform: scale(1.03);
+    }
+
+    .bunny-card__body {
+      padding: 1rem 1.25rem 1.25rem;
+    }
+
+    .bunny-card__year {
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--urbana-gray);
+      font-family: var(--font-body);
+      margin-bottom: 0.25rem;
+    }
+
+    .bunny-card__name {
+      font-family: var(--font-title);
+      font-size: 1.1rem;
+      color: var(--urbana-blue);
+      letter-spacing: 0.03em;
+      margin-bottom: 0.25rem;
+    }
+
+    .bunny-card__name--tbd {
+      color: var(--urbana-gray);
+      font-style: italic;
+    }
+
+    @media (max-width: 900px) {
+      .robot-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .robot-card--featured {
+        grid-column: span 2;
+        flex-direction: column;
+      }
+
+      .robot-card--featured .robot-card__photo {
+        width: 100%;
+      }
+
+      .robot-card--featured .robot-card__photo img {
+        height: 260px;
+        min-height: unset;
+      }
+
+      .bunny-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 600px) {
+      .robot-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .robot-card--featured {
+        grid-column: span 1;
+      }
+
+      .bunny-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ══ HEADER ══════════════════════════════════════════ -->
+  <header class="site-header">
+    <div class="container">
+      <a href="index.html" class="header-brand">
+        <img
+          src="assets/images/hawk-logo.png"
+          alt="CryptoHawks Logo"
+          class="header-brand__logo"
+          onerror="this.style.display='none'"
+        />
+        <div class="header-brand__text">
+          <span class="header-brand__name">CryptoHawks</span>
+          <span class="header-brand__number">FRC Team 8726</span>
+        </div>
+      </a>
+
+      <button class="nav-toggle" aria-label="Toggle navigation" onclick="toggleNav()">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+      <nav class="site-nav" id="site-nav">
+        <a href="index.html"    class="site-nav__link">Home</a>
+        <a href="team.html"     class="site-nav__link">Team</a>
+        <a href="robots.html"   class="site-nav__link active">Robots</a>
+        <a href="sponsors.html" class="site-nav__link">Sponsors</a>
+        <a href="outreach.html" class="site-nav__link">Outreach</a>
+        <a href="blog.html"     class="site-nav__link">Blog</a>
+        <a href="calendar.html" class="site-nav__link">Calendar</a>
+        <a href="contact.html"  class="site-nav__link">Contact</a>
+        <a href="join.html"     class="site-nav__link site-nav__link--cta">Get Involved</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ══ PAGE HERO ════════════════════════════════════════ -->
+  <section class="page-hero">
+    <div class="container">
+      <p class="page-hero__label">What we build</p>
+      <h1 class="page-hero__title">Our Robots</h1>
+      <p class="page-hero__sub">Every season, six weeks. One robot.</p>
+    </div>
+  </section>
+
+  <!-- ══ BANNER PHOTO ══════════════════════════════════════ -->
+  <img
+    src="assets/images/robots/good.jpg"
+    alt="CryptoHawks robot on the competition field"
+    class="robots-banner"
+  />
+
+  <main>
+
+    <!-- ══ COMPETITION ROBOTS ════════════════════════════ -->
+    <section class="robots-section">
+      <div class="container">
+        <p class="section-label">Competition Robots</p>
+        <h2 style="color:var(--urbana-blue);">Built to Compete</h2>
+        <p class="robots-section__intro">
+          Each January, the game is revealed and the clock starts. Six weeks later, 
+          the CryptoHawks ship a robot. Here's every one we've built.
+        </p>
+
+        <div class="robot-grid">
+
+          <!-- 2026 — Featured / Current -->
+          <div class="robot-card robot-card--featured">
+            <div class="robot-card__photo">
+              <img
+                src="assets/images/robots/26bot.JPG"
+                alt="CryptoHawks 2026 robot being worked on"
+                style="object-position: center 30%;"
+              />
+            </div>
+            <div class="robot-card__body">
+              <p class="robot-card__year">2026 · Current Season</p>
+              <h3 class="robot-card__name robot-card__name--tbd">Name TBD</h3>
+              <p class="robot-card__game">Rebuilt</p>
+              <p class="robot-card__desc">
+                In Rebuilt, two alliances score fuel into goals and climb a 
+                tower structure at the end of each match. The CryptoHawks are 
+                currently in build season — check back for updates.
+              </p>
+            </div>
+          </div>
+
+          <!-- 2025 -->
+          <div class="robot-card">
+            <div class="robot-card__photo">
+              <img
+                src="assets/images/robots/25bot.JPG"
+                alt="CryptoHawks 2025 robot at competition"
+              />
+            </div>
+            <div class="robot-card__body">
+              <p class="robot-card__year">2025</p>
+              <h3 class="robot-card__name robot-card__name--tbd">Name TBD</h3>
+              <p class="robot-card__game">Reefscape</p>
+              <p class="robot-card__desc">
+                In Reefscape, alliances scored PVC coral and algae balls onto 
+                a reef structure, then climbed a truss at the end of each match.
+              </p>
+            </div>
+          </div>
+
+          <!-- 2024 — Remy -->
+          <div class="robot-card">
+            <div class="robot-card__photo">
+              <img
+                src="assets/images/robots/remy.jpg"
+                alt="Remy, the CryptoHawks 2024 robot"
+                style="object-position: center 20%;"
+              />
+            </div>
+            <div class="robot-card__body">
+              <p class="robot-card__year">2024</p>
+              <h3 class="robot-card__name">Remy</h3>
+              <p class="robot-card__game">Crescendo</p>
+              <p class="robot-card__desc">
+                In Crescendo, alliances shot ring-shaped notes into a speaker 
+                and amp, then climbed a chain on stage at the end of each match.
+              </p>
+            </div>
+          </div>
+
+          <!-- 2023 — Juan Pablo -->
+          <div class="robot-card">
+            <div class="robot-card__photo">
+              <img
+                src="assets/images/robots/juanpablo.jpg"
+                alt="Juan Pablo, the CryptoHawks 2023 robot"
+                style="object-position: center top;"
+              />
+            </div>
+            <div class="robot-card__body">
+              <p class="robot-card__year">2023</p>
+              <h3 class="robot-card__name">Juan Pablo</h3>
+              <p class="robot-card__game">Charged Up</p>
+              <p class="robot-card__desc">
+                In Charged Up, alliances placed cones and cubes on a grid 
+                structure, then balanced on a charging station at the end of 
+                each match.
+              </p>
+            </div>
+          </div>
+
+          <!-- 2022 — Peanut Butter Crackers -->
+          <div class="robot-card">
+            <div class="robot-card__photo">
+              <img
+                src="assets/images/robots/pbc.jpg"
+                alt="Peanut Butter Crackers, the CryptoHawks 2022 robot"
+                style="object-position: center 30%;"
+              />
+            </div>
+            <div class="robot-card__body">
+              <p class="robot-card__year">2022 · Rookie Season</p>
+              <h3 class="robot-card__name">Peanut Butter Crackers</h3>
+              <p class="robot-card__game">Rapid React</p>
+              <p class="robot-card__desc">
+                In Rapid React, alliances shot inflatable cargo balls into a 
+                central hub and climbed within their hangar at the end of each 
+                match. Our first ever competition robot.
+              </p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ══ BUNNYBOTS ════════════════════════════════════════ -->
+    <section class="bunnybots-section">
+      <div class="container">
+        <p class="section-label">Offseason</p>
+        <h2 style="color:var(--urbana-blue);">BunnyBots</h2>
+
+        <div class="bunnybots-explainer">
+          <div class="bunnybots-explainer__icon">🐰</div>
+          <p class="bunnybots-explainer__text">
+            <strong>Blair BunnyBots</strong> is an offseason event hosted by 
+            <strong>FRC Team 449</strong> at Montgomery Blair High School each fall. 
+            Teams participate in a separate build season with a brand-new game 
+            designed by mentors and alumni — giving rookie members their first 
+            chance to build a real FRC-style robot and veterans a chance to mentor 
+            and lead. Adults don't touch the robot. Students do everything.
+          </p>
+        </div>
+
+        <div class="bunny-grid">
+
+          <!-- 2025 BunnyBot -->
+          <div class="bunny-card">
+            <div class="bunny-card__photo">
+              <img
+                src="assets/images/robots/25bunnybot.JPG"
+                alt="CryptoHawks 2025 BunnyBot"
+              />
+            </div>
+            <div class="bunny-card__body">
+              <p class="bunny-card__year">2025 · BunnyBots</p>
+              <h3 class="bunny-card__name bunny-card__name--tbd">Name TBD</h3>
+            </div>
+          </div>
+
+          <!-- 2024 BunnyBot -->
+          <div class="bunny-card">
+            <div class="bunny-card__photo">
+              <img
+                src="assets/images/robots/24bunnybot.jpg"
+                alt="CryptoHawks 2024 BunnyBot"
+                style="object-position: center 20%;"
+              />
+            </div>
+            <div class="bunny-card__body">
+              <p class="bunny-card__year">2024 · BunnyBots</p>
+              <h3 class="bunny-card__name bunny-card__name--tbd">Name TBD</h3>
+            </div>
+          </div>
+
+          <!-- 2022 BunnyBot — BunnyHawks -->
+          <div class="bunny-card">
+            <div class="bunny-card__photo">
+              <img
+                src="assets/images/robots/bunnyhawks.jpg"
+                alt="BunnyHawks, the CryptoHawks 2022 BunnyBot"
+              />
+            </div>
+            <div class="bunny-card__body">
+              <p class="bunny-card__year">2022 · BunnyBots</p>
+              <h3 class="bunny-card__name">BunnyHawks</h3>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ══ FOOTER ═══════════════════════════════════════════ -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-brand">
+        <p class="footer-brand__name">CryptoHawks</p>
+        <p class="footer-brand__tag">FRC Team 8726 · Urbana High School · Ijamsville, MD</p>
+        <p class="footer-brand__motto">"One Team, One Urbana"</p>
+      </div>
+
+      <div class="footer-col">
+        <p class="footer-col__title">Navigate</p>
+        <a href="index.html">Home</a>
+        <a href="team.html">Team</a>
+        <a href="robots.html">Robots</a>
+        <a href="sponsors.html">Sponsors</a>
+        <a href="outreach.html">Outreach</a>
+        <a href="blog.html">Blog</a>
+        <a href="calendar.html">Calendar</a>
+        <a href="contact.html">Contact</a>
+        <a href="join.html">Get Involved</a>
+      </div>
+
+      <div class="footer-col">
+        <p class="footer-col__title">Contact</p>
+        <a href="mailto:urbanahsrobotics@gmail.com">urbanahsrobotics@gmail.com</a>
+        <a href="mailto:joshua.holmes@fcps.org">joshua.holmes@fcps.org</a>
+
+        <p class="footer-col__title" style="margin-top:1.25rem;">Follow Us</p>
+        <a href="https://www.instagram.com/uhsrobotics" target="_blank" rel="noopener">Instagram</a>
+        <a href="https://github.com/cryptohawks8726" target="_blank" rel="noopener">GitHub</a>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="footer-bottom">
+        <p>&copy; 2024 CryptoHawks FRC 8726 · Urbana High School</p>
+        <p>Built by the CryptoHawks Partner Relations Sub-Team</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    function toggleNav() {
+      document.getElementById('site-nav').classList.toggle('open');
+    }
+
+    document.querySelectorAll('.site-nav__link').forEach(link => {
+      link.addEventListener('click', () => {
+        document.getElementById('site-nav').classList.remove('open');
+      });
+    });
+  </script>
+
+</body>
+</html>
