@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact | CryptoHawks FRC 8726</title>
+  <meta name="description" content="Get in touch with CryptoHawks FRC 8726." />
+  <link rel="stylesheet" href="assets/style.css" />
+  <link rel="icon" href="assets/images/hawk-logo.png" type="image/png" />
+
+  <style>
+    .contact-page {
+      padding: 4rem 0 6rem;
+      max-width: 720px;
+      margin: 0 auto;
+    }
+
+    /* ── Info strip above form ── */
+    .contact-details {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2.5rem;
+      margin-bottom: 2.5rem;
+      padding-bottom: 2.5rem;
+      border-bottom: 1px solid #e2e2ea;
+      align-items: flex-end;
+    }
+
+    .contact-details__block {
+      display: flex;
+      flex-direction: column;
+      gap: 0.2rem;
+    }
+
+    .contact-details__label {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--urbana-gray);
+      font-family: var(--font-body);
+    }
+
+    .contact-details__value {
+      font-family: var(--font-body);
+      font-size: 0.95rem;
+      color: var(--black);
+      line-height: 1.6;
+    }
+
+    .contact-details__value a {
+      color: var(--blue-alt);
+      text-decoration: none;
+      transition: color var(--transition);
+    }
+
+    .contact-details__value a:hover {
+      color: var(--urbana-blue);
+    }
+
+    .contact-socials {
+      display: flex;
+      gap: 0.6rem;
+      margin-left: auto;
+    }
+
+    .social-link {
+      font-family: var(--font-body);
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--urbana-blue);
+      border: 1px solid #e2e2ea;
+      border-radius: var(--radius);
+      padding: 0.35rem 0.8rem;
+      text-decoration: none;
+      transition: all var(--transition);
+    }
+
+    .social-link:hover {
+      background: var(--urbana-blue);
+      color: var(--white);
+      border-color: var(--urbana-blue);
+    }
+
+    /* ── Form ── */
+    .contact-form-wrap h2 {
+      font-size: 1.4rem;
+      color: var(--urbana-blue);
+      margin-bottom: 0.25rem;
+    }
+
+    .form-sub {
+      font-size: 0.9rem;
+      color: var(--dark-gray);
+      margin-bottom: 2rem;
+      max-width: none;
+    }
+
+    .form-group {
+      margin-bottom: 1.25rem;
+    }
+
+    .form-group label {
+      display: block;
+      font-family: var(--font-body);
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--dark-gray);
+      margin-bottom: 0.4rem;
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%;
+      font-family: var(--font-body);
+      font-size: 0.95rem;
+      color: var(--black);
+      background: var(--white);
+      border: 1px solid #d0d0dc;
+      border-radius: var(--radius);
+      padding: 0.65rem 0.9rem;
+      transition: border-color var(--transition), box-shadow var(--transition);
+      outline: none;
+      appearance: none;
+    }
+
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      border-color: var(--blue-alt);
+      box-shadow: 0 0 0 3px rgba(11, 53, 98, 0.1);
+    }
+
+    .form-group textarea {
+      resize: vertical;
+      min-height: 140px;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+
+    .form-submit {
+      margin-top: 1.5rem;
+    }
+
+    .form-submit .btn {
+      width: 100%;
+      text-align: center;
+      padding: 0.85rem;
+      font-size: 0.9rem;
+    }
+
+    .form-submit .btn:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+
+    .form-feedback {
+      display: none;
+      border-radius: var(--radius);
+      padding: 1rem 1.25rem;
+      margin-top: 1.25rem;
+      font-family: var(--font-body);
+      font-size: 0.9rem;
+      line-height: 1.5;
+    }
+
+    .form-feedback.success {
+      display: block;
+      background: #e8f5e9;
+      border: 1px solid #a5d6a7;
+      color: #2e7d32;
+    }
+
+    .form-feedback.error {
+      display: block;
+      background: #ffebee;
+      border: 1px solid #ef9a9a;
+      color: #c62828;
+    }
+
+    .form-feedback strong {
+      display: block;
+      margin-bottom: 0.25rem;
+    }
+
+    .contact-form.submitted .form-fields,
+    .contact-form.submitted .form-submit {
+      display: none;
+    }
+
+    @media (max-width: 600px) {
+      .contact-page {
+        padding: 2.5rem 0 4rem;
+      }
+
+      .form-row {
+        grid-template-columns: 1fr;
+      }
+
+      .contact-details {
+        gap: 1.5rem;
+      }
+
+      .contact-socials {
+        margin-left: 0;
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ══ HEADER ══════════════════════════════════════════ -->
+  <header class="site-header">
+    <div class="container">
+      <a href="index.html" class="header-brand">
+        <img
+          src="assets/images/hawk-logo.png"
+          alt="CryptoHawks Logo"
+          class="header-brand__logo"
+          onerror="this.style.display='none'"
+        />
+        <div class="header-brand__text">
+          <span class="header-brand__name">CryptoHawks</span>
+          <span class="header-brand__number">FRC Team 8726</span>
+        </div>
+      </a>
+
+      <button class="nav-toggle" aria-label="Toggle navigation" onclick="toggleNav()">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+      <nav class="site-nav" id="site-nav">
+        <a href="index.html"    class="site-nav__link">Home</a>
+        <a href="team.html"     class="site-nav__link">Team</a>
+        <a href="robots.html"   class="site-nav__link">Robots</a>
+        <a href="sponsors.html" class="site-nav__link">Sponsors</a>
+        <a href="outreach.html" class="site-nav__link">Outreach</a>
+        <a href="blog.html"     class="site-nav__link">Blog</a>
+        <a href="calendar.html" class="site-nav__link">Calendar</a>
+        <a href="contact.html"  class="site-nav__link active">Contact</a>
+        <a href="join.html"     class="site-nav__link site-nav__link--cta">Get Involved</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ══ PAGE HERO ════════════════════════════════════════ -->
+  <section class="page-hero">
+    <div class="container">
+      <p class="page-hero__label">Reach out</p>
+      <h1 class="page-hero__title">Contact Us</h1>
+      <p class="page-hero__sub">
+        Questions, ideas, or just want to learn more about the CryptoHawks?
+        We'd love to hear from you.
+      </p>
+    </div>
+  </section>
+
+  <main>
+    <div class="container">
+      <div class="contact-page">
+
+        <!-- ── Contact details strip ── -->
+        <div class="contact-details">
+          <div class="contact-details__block">
+            <span class="contact-details__label">Team Email</span>
+            <span class="contact-details__value">
+              <a href="mailto:urbanahsrobotics@gmail.com">urbanahsrobotics@gmail.com</a>
+            </span>
+          </div>
+
+          <div class="contact-details__block">
+            <span class="contact-details__label">Head Coach</span>
+            <span class="contact-details__value">
+              <a href="mailto:joshua.holmes@fcps.org">joshua.holmes@fcps.org</a>
+            </span>
+          </div>
+
+          <div class="contact-details__block">
+            <span class="contact-details__label">Mailing Address</span>
+            <span class="contact-details__value">
+              3714 Campus Drive, Ijamsville, MD 21754
+            </span>
+          </div>
+
+          <div class="contact-socials">
+            <a href="https://www.instagram.com/uhsrobotics" class="social-link" target="_blank" rel="noopener">Instagram</a>
+            <a href="https://github.com/cryptohawks8726" class="social-link" target="_blank" rel="noopener">GitHub</a>
+          </div>
+        </div>
+
+        <!-- ── Form ── -->
+        <div class="contact-form-wrap">
+          <h2>Send a Message</h2>
+          <p class="form-sub">We typically respond within 24–48 hours.</p>
+
+          <form id="contact-form" class="contact-form" novalidate>
+            <div class="form-fields">
+
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="name">Your Name</label>
+                  <input type="text" id="name" name="name" placeholder="Jane Smith" required autocomplete="name" />
+                </div>
+                <div class="form-group">
+                  <label for="email">Email Address</label>
+                  <input type="email" id="email" name="email" placeholder="jane@example.com" required autocomplete="email" />
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="subject">Subject</label>
+                <select id="subject" name="subject" required>
+                  <option value="" disabled selected>Select a topic…</option>
+                  <option value="General Question">General Question</option>
+                  <option value="Prospective Student">Prospective Student</option>
+                  <option value="Prospective Mentor">Prospective Mentor</option>
+                  <option value="Sponsorship Inquiry">Sponsorship Inquiry</option>
+                  <option value="Media / Press">Media / Press</option>
+                  <option value="Other">Other</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label for="message">Message</label>
+                <textarea id="message" name="message" placeholder="Tell us what's on your mind…" required></textarea>
+              </div>
+
+            </div>
+
+            <div class="form-submit">
+              <button type="submit" class="btn btn--primary" id="submit-btn">Send Message</button>
+            </div>
+
+            <div class="form-feedback" id="form-feedback" role="alert"></div>
+          </form>
+        </div>
+
+      </div>
+    </div>
+  </main>
+
+  <!-- ══ FOOTER ═══════════════════════════════════════════ -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-brand">
+        <p class="footer-brand__name">CryptoHawks</p>
+        <p class="footer-brand__tag">FRC Team 8726 · Urbana High School · Ijamsville, MD</p>
+        <p class="footer-brand__motto">"One Team, One Urbana"</p>
+      </div>
+
+      <div class="footer-col">
+        <p class="footer-col__title">Navigate</p>
+        <a href="index.html">Home</a>
+        <a href="team.html">Team</a>
+        <a href="robots.html">Robots</a>
+        <a href="sponsors.html">Sponsors</a>
+        <a href="outreach.html">Outreach</a>
+        <a href="blog.html">Blog</a>
+        <a href="calendar.html">Calendar</a>
+        <a href="contact.html">Contact</a>
+        <a href="join.html">Get Involved</a>
+      </div>
+
+      <div class="footer-col">
+        <p class="footer-col__title">Contact</p>
+        <a href="mailto:urbanahsrobotics@gmail.com">urbanahsrobotics@gmail.com</a>
+        <a href="mailto:joshua.holmes@fcps.org">joshua.holmes@fcps.org</a>
+
+        <p class="footer-col__title" style="margin-top:1.25rem;">Follow Us</p>
+        <a href="https://www.instagram.com/uhsrobotics" target="_blank" rel="noopener">Instagram</a>
+        <a href="https://github.com/cryptohawks8726" target="_blank" rel="noopener">GitHub</a>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="footer-bottom">
+        <p>&copy; 2024 CryptoHawks FRC 8726 · Urbana High School</p>
+        <p>Built by the CryptoHawks Partner Relations Sub-Team</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    function toggleNav() {
+      document.getElementById('site-nav').classList.toggle('open');
+    }
+
+    document.querySelectorAll('.site-nav__link').forEach(link => {
+      link.addEventListener('click', () => {
+        document.getElementById('site-nav').classList.remove('open');
+      });
+    });
+
+    document.getElementById('contact-form').addEventListener('submit', async function (e) {
+      e.preventDefault();
+
+      const form     = this;
+      const btn      = document.getElementById('submit-btn');
+      const feedback = document.getElementById('form-feedback');
+
+      feedback.className = 'form-feedback';
+      feedback.innerHTML = '';
+
+      const name    = form.name.value.trim();
+      const email   = form.email.value.trim();
+      const subject = form.subject.value;
+      const message = form.message.value.trim();
+
+      if (!name || !email || !subject || !message) {
+        feedback.className = 'form-feedback error';
+        feedback.innerHTML = '<strong>Please fill in all fields.</strong>';
+        return;
+      }
+
+      const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailPattern.test(email)) {
+        feedback.className = 'form-feedback error';
+        feedback.innerHTML = '<strong>Please enter a valid email address.</strong>';
+        return;
+      }
+
+      btn.disabled = true;
+      btn.textContent = 'Sending…';
+
+      try {
+        const response = await fetch('https://frc8726.org/api/contact', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ name, email, subject, message })
+        });
+
+        const data = await response.json();
+
+        if (data.success) {
+          form.classList.add('submitted');
+          feedback.className = 'form-feedback success';
+          feedback.innerHTML =
+            '<strong>Message sent!</strong> Thanks for reaching out, ' +
+            name.split(' ')[0] + '. We\'ll get back to you within 48 hours.';
+        } else {
+          throw new Error(data.error || 'Something went wrong.');
+        }
+
+      } catch (err) {
+        feedback.className = 'form-feedback error';
+        feedback.innerHTML =
+          '<strong>Something went wrong.</strong> Please try again or email us at ' +
+          '<a href="mailto:urbanahsrobotics@gmail.com">urbanahsrobotics@gmail.com</a>.';
+        btn.disabled = false;
+        btn.textContent = 'Send Message';
+      }
+    });
+  </script>
+
+</body>
+</html>
