@@ -127,16 +127,5 @@ The server runs at home on an OrangePi5 and is accessible worldwide via Cloudfla
 
 ---
 
-### Getting Help
-
-- **Discord** — post in the appropriate channel if you're stuck
-- **Coach Holmes** — [joshua.holmes@fcps.org](mailto:joshua.holmes@fcps.org)
-- **Team email** — [urbanahsrobotics@gmail.com](mailto:urbanahsrobotics@gmail.com)
-- **GitHub Docs** — [docs.github.com](https://docs.github.com) is actually really good
-
-If you break something, don't panic. That's what branches and Pull Requests are for — nothing gets to the live site without approval.
-
----
-
 *Built and maintained by the CryptoHawks Partner Relations Sub-Team*  
 *FRC Team 8726 · Urbana High School · Ijamsville, MD*
