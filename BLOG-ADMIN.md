@@ -107,10 +107,4 @@ The blog is public — sponsors, parents, judges, and potential new members read
 
 ---
 
-## Questions?
-
-Contact Coach Holmes at [joshua.holmes@fcps.org](mailto:joshua.holmes@fcps.org) or post in the team Discord.
-
----
-
 *Blog admin powered by a Flask app running on the CryptoHawks OrangePi5 home server.*
