@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Blog | CryptoHawks FRC 8726</title>
+  <meta name="description" content="News, updates, and stories from CryptoHawks FRC 8726." />
+  <link rel="stylesheet" href="assets/style.css" />
+  <link rel="icon" href="assets/images/hawk-logo.png" type="image/png" />
+
+  <style>
+    .blog-layout {
+      padding: 3.5rem 0 6rem;
+    }
+
+    /* ── Post grid ── */
+    .post-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+      margin-top: 2.5rem;
+    }
+
+    /* ── Post card ── */
+    .post-card {
+      background: var(--white);
+      border: 1px solid #e2e2ea;
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+      transition: box-shadow var(--transition), transform var(--transition);
+      display: flex;
+      flex-direction: column;
+      text-decoration: none;
+    }
+
+    .post-card:hover {
+      box-shadow: var(--shadow);
+      transform: translateY(-3px);
+    }
+
+    .post-card__photo {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      display: block;
+      background: #e8e8f0;
+      transition: transform 0.4s ease;
+    }
+
+    .post-card:hover .post-card__photo {
+      transform: scale(1.03);
+    }
+
+    .post-card__photo-wrap {
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+
+    /* Placeholder when no photo */
+    .post-card__photo-placeholder {
+      width: 100%;
+      height: 200px;
+      background: linear-gradient(135deg, var(--urbana-blue) 0%, var(--blue-alt) 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.5rem;
+      opacity: 0.6;
+      flex-shrink: 0;
+    }
+
+    .post-card__body {
+      padding: 1.25rem 1.5rem 1.5rem;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .post-card__meta {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .post-card__date {
+      font-family: var(--font-body);
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--urbana-gray);
+    }
+
+    .post-card__dot {
+      width: 3px;
+      height: 3px;
+      border-radius: 50%;
+      background: var(--light-gray);
+      flex-shrink: 0;
+    }
+
+    .post-card__author {
+      font-family: var(--font-body);
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--urbana-gray);
+    }
+
+    .post-card__title {
+      font-family: var(--font-title);
+      font-size: 1.15rem;
+      color: var(--urbana-blue);
+      letter-spacing: 0.02em;
+      margin-bottom: 0.6rem;
+      line-height: 1.2;
+    }
+
+    .post-card__excerpt {
+      font-family: var(--font-body);
+      font-size: 0.875rem;
+      color: var(--dark-gray);
+      line-height: 1.6;
+      flex: 1;
+      max-width: none;
+    }
+
+    .post-card__read-more {
+      font-family: var(--font-body);
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--blue-alt);
+      margin-top: 1rem;
+      display: inline-block;
+    }
+
+    /* ── Empty state ── */
+    .blog-empty {
+      grid-column: 1 / -1;
+      text-align: center;
+      padding: 5rem 2rem;
+      color: var(--dark-gray);
+    }
+
+    .blog-empty__icon {
+      font-size: 3rem;
+      opacity: 0.3;
+      margin-bottom: 1rem;
+    }
+
+    .blog-empty__title {
+      font-family: var(--font-title);
+      font-size: 1.4rem;
+      color: var(--urbana-blue);
+      letter-spacing: 0.04em;
+      margin-bottom: 0.5rem;
+    }
+
+    .blog-empty__sub {
+      font-size: 0.95rem;
+      color: var(--urbana-gray);
+      max-width: none;
+    }
+
+    /* ── Loading state ── */
+    .blog-loading {
+      grid-column: 1 / -1;
+      text-align: center;
+      padding: 4rem;
+      color: var(--urbana-gray);
+      font-family: var(--font-body);
+      font-size: 0.9rem;
+    }
+
+    /* ── Error state ── */
+    .blog-error {
+      grid-column: 1 / -1;
+      text-align: center;
+      padding: 4rem;
+      color: var(--dark-gray);
+      font-family: var(--font-body);
+      font-size: 0.9rem;
+    }
+
+    @media (max-width: 900px) {
+      .post-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 600px) {
+      .post-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ══ HEADER ══════════════════════════════════════════ -->
+  <header class="site-header">
+    <div class="container">
+      <a href="index.html" class="header-brand">
+        <img
+          src="assets/images/hawk-logo.png"
+          alt="CryptoHawks Logo"
+          class="header-brand__logo"
+          onerror="this.style.display='none'"
+        />
+        <div class="header-brand__text">
+          <span class="header-brand__name">CryptoHawks</span>
+          <span class="header-brand__number">FRC Team 8726</span>
+        </div>
+      </a>
+
+      <button class="nav-toggle" aria-label="Toggle navigation" onclick="toggleNav()">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+      <nav class="site-nav" id="site-nav">
+        <a href="index.html"    class="site-nav__link">Home</a>
+        <a href="team.html"     class="site-nav__link">Team</a>
+        <a href="robots.html"   class="site-nav__link">Robots</a>
+        <a href="sponsors.html" class="site-nav__link">Sponsors</a>
+        <a href="outreach.html" class="site-nav__link">Outreach</a>
+        <a href="blog.html"     class="site-nav__link active">Blog</a>
+        <a href="calendar.html" class="site-nav__link">Calendar</a>
+        <a href="contact.html"  class="site-nav__link">Contact</a>
+        <a href="join.html"     class="site-nav__link site-nav__link--cta">Get Involved</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ══ PAGE HERO ════════════════════════════════════════ -->
+  <section class="page-hero">
+    <div class="container">
+      <p class="page-hero__label">From the team</p>
+      <h1 class="page-hero__title">Blog</h1>
+      <p class="page-hero__sub">Updates, recaps, and stories from the CryptoHawks.</p>
+    </div>
+  </section>
+
+  <main>
+    <div class="container">
+      <div class="blog-layout">
+
+        <p class="section-label">Latest posts</p>
+        <h2 style="color:var(--urbana-blue);">What's New</h2>
+
+        <div class="post-grid" id="post-grid">
+          <div class="blog-loading">Loading posts…</div>
+        </div>
+
+      </div>
+    </div>
+  </main>
+
+  <!-- ══ FOOTER ═══════════════════════════════════════════ -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-brand">
+        <p class="footer-brand__name">CryptoHawks</p>
+        <p class="footer-brand__tag">FRC Team 8726 · Urbana High School · Ijamsville, MD</p>
+        <p class="footer-brand__motto">"One Team, One Urbana"</p>
+      </div>
+
+      <div class="footer-col">
+        <p class="footer-col__title">Navigate</p>
+        <a href="index.html">Home</a>
+        <a href="team.html">Team</a>
+        <a href="robots.html">Robots</a>
+        <a href="sponsors.html">Sponsors</a>
+        <a href="outreach.html">Outreach</a>
+        <a href="blog.html">Blog</a>
+        <a href="calendar.html">Calendar</a>
+        <a href="contact.html">Contact</a>
+        <a href="join.html">Get Involved</a>
+      </div>
+
+      <div class="footer-col">
+        <p class="footer-col__title">Contact</p>
+        <a href="mailto:urbanahsrobotics@gmail.com">urbanahsrobotics@gmail.com</a>
+        <a href="mailto:joshua.holmes@fcps.org">joshua.holmes@fcps.org</a>
+
+        <p class="footer-col__title" style="margin-top:1.25rem;">Follow Us</p>
+        <a href="https://www.instagram.com/uhsrobotics" target="_blank" rel="noopener">Instagram</a>
+        <a href="https://github.com/cryptohawks8726" target="_blank" rel="noopener">GitHub</a>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="footer-bottom">
+        <p>&copy; 2024 CryptoHawks FRC 8726 · Urbana High School</p>
+        <p>Built by the CryptoHawks Partner Relations Sub-Team</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // ── Mobile nav ─────────────────────────────────────────
+    function toggleNav() {
+      document.getElementById('site-nav').classList.toggle('open');
+    }
+
+    document.querySelectorAll('.site-nav__link').forEach(link => {
+      link.addEventListener('click', () => {
+        document.getElementById('site-nav').classList.remove('open');
+      });
+    });
+
+    // ── Format date nicely ─────────────────────────────────
+    function formatDate(dateStr) {
+      const [year, month, day] = dateStr.split('-');
+      const date = new Date(year, month - 1, day);
+      return date.toLocaleDateString('en-US', {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric'
+      });
+    }
+
+    // ── Build a post card ──────────────────────────────────
+    function buildCard(post) {
+      const card = document.createElement('a');
+      card.className = 'post-card';
+      card.href = `blog/posts/${post.slug}.html`;
+
+      const photoHtml = post.photo
+        ? `<div class="post-card__photo-wrap">
+             <img
+               class="post-card__photo"
+               src="${post.photo}"
+               alt="${post.title}"
+               loading="lazy"
+             />
+           </div>`
+        : `<div class="post-card__photo-placeholder">📝</div>`;
+
+      card.innerHTML = `
+        ${photoHtml}
+        <div class="post-card__body">
+          <div class="post-card__meta">
+            <span class="post-card__date">${formatDate(post.date)}</span>
+            <span class="post-card__dot"></span>
+            <span class="post-card__author">${post.author}</span>
+          </div>
+          <h3 class="post-card__title">${post.title}</h3>
+          <p class="post-card__excerpt">${post.excerpt}</p>
+          <span class="post-card__read-more">Read more →</span>
+        </div>
+      `;
+
+      return card;
+    }
+
+    // ── Fetch and render posts ─────────────────────────────
+    async function loadPosts() {
+      const grid = document.getElementById('post-grid');
+
+      try {
+        const response = await fetch('blog/posts.json');
+
+        if (!response.ok) throw new Error('Could not load posts.');
+
+        const posts = await response.json();
+
+        grid.innerHTML = '';
+
+        if (!posts || posts.length === 0) {
+          grid.innerHTML = `
+            <div class="blog-empty">
+              <div class="blog-empty__icon">📝</div>
+              <p class="blog-empty__title">No posts yet — check back soon!</p>
+              <p class="blog-empty__sub">The CryptoHawks will have updates here throughout the season.</p>
+            </div>
+          `;
+          return;
+        }
+
+        // Newest first
+        const sorted = [...posts].sort((a, b) => new Date(b.date) - new Date(a.date));
+        sorted.forEach(post => grid.appendChild(buildCard(post)));
+
+      } catch (err) {
+        grid.innerHTML = `
+          <div class="blog-error">
+            <p>Couldn't load posts right now. Try refreshing the page.</p>
+          </div>
+        `;
+      }
+    }
+
+    loadPosts();
+  </script>
+
+</body>
+</html>
