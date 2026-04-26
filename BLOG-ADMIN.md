@@ -10,7 +10,7 @@ Go to: **[https://frc8726.org/admin](https://frc8726.org/admin)**
 
 This page is not linked from the public website. Keep the URL and password within the team.
 
-**Password:** ask Coach Holmes
+**Password:** uhs8726
 
 ---
 
