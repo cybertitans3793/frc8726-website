@@ -1,0 +1,5 @@
+# Blog runtime data — managed by the /admin panel (frc-blog-api), not git.
+# Do not commit these; a merge here would overwrite live posts on next deploy.
+html/blog/posts.json
+html/blog/posts/
+html/assets/images/blog/
