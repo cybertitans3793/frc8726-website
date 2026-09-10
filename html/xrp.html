@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Mountain Mayhem — XRP Fundraiser | CryptoHawks FRC 8726</title>
-  <meta name="description" content="Mountain Mayhem: CryptoHawks FRC 8726's XRP robotics fundraiser for middle schoolers. Build and battle your own XRP robot — Sat, Oct 24, 2026 at Urbana High School." />
+  <meta name="description" content="Mountain Mayhem: CryptoHawks FRC 8726's XRP robotics fundraiser for grades 6-8. Build and battle your own XRP robot — Sat, Oct 24, 2026 at Urbana High School." />
   <link rel="stylesheet" href="assets/style.css" />
   <link rel="icon" href="assets/images/hawk-logo.png" type="image/png" />
 
@@ -44,6 +44,34 @@
       box-shadow: var(--shadow);
     }
 
+    /* ── Video ── */
+    .video-section {
+      padding: 0 0 4rem;
+      border-top: 1px solid #e2e2ea;
+      padding-top: 3rem;
+    }
+
+    .video-wrap {
+      position: relative;
+      width: 100%;
+      max-width: 800px;
+      margin: 1.5rem auto 0;
+      padding-bottom: 45%;
+      height: 0;
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+    }
+
+    .video-wrap iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+
     /* ── Event details grid ── */
     .details-section {
       padding: 3rem 0 4rem;
@@ -52,7 +80,7 @@
 
     .details-grid {
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
+      grid-template-columns: repeat(5, 1fr);
       gap: 1.5rem;
       margin-top: 1.5rem;
     }
@@ -195,7 +223,7 @@
       }
 
       .details-grid {
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: repeat(3, 1fr);
       }
 
       .register-band {
@@ -217,6 +245,10 @@
     @media (max-width: 500px) {
       .details-grid {
         grid-template-columns: 1fr;
+      }
+
+      .video-wrap {
+        padding-bottom: 56.25%;
       }
     }
   </style>
@@ -264,7 +296,7 @@
   <!-- ══ PAGE HERO ════════════════════════════════════════ -->
   <section class="page-hero">
     <div class="container">
-      <p class="page-hero__label">Middle School · XRP Robotics Fundraiser</p>
+      <p class="page-hero__label">Grades 6&ndash;8 · XRP Robotics Fundraiser</p>
       <h1 class="page-hero__title">Mountain Mayhem</h1>
       <p class="page-hero__sub">Build it. Battle it. Support Team 8726's competitive season.</p>
     </div>
@@ -282,8 +314,8 @@
             <h2>Build a Robot. Compete for the Summit.</h2>
             <hr class="divider" />
             <p>
-              Working with a partner, middle schoolers build their own XRP robot
-              from the kit, then compete head-to-head in the official
+              Working with a partner, students in grades 6&ndash;8 build their own
+              XRP robot from the kit, then compete head-to-head in the official
               <strong>Mountain Mayhem</strong> game &mdash; no experience required,
               just curiosity.
             </p>
@@ -303,6 +335,22 @@
         </div>
       </div>
 
+      <!-- ══ VIDEO ══════════════════════════════════════════ -->
+      <div class="video-section">
+        <p class="section-label">See it in action</p>
+        <h2>Watch the Mountain Mayhem Recap</h2>
+        <hr class="divider" />
+
+        <div class="video-wrap">
+          <iframe
+            src="https://www.youtube.com/embed/rt5A8je92gk"
+            title="Mountain Mayhem — XRP Robotics Fundraiser"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowfullscreen>
+          </iframe>
+        </div>
+      </div>
+
       <!-- ══ EVENT DETAILS ══════════════════════════════════ -->
       <div class="details-section">
         <p class="section-label">Event details</p>
@@ -310,6 +358,10 @@
         <hr class="divider" />
 
         <div class="details-grid">
+          <div class="details-card">
+            <p class="details-card__label">Grade Level</p>
+            <p class="details-card__value">Grades 6&ndash;8</p>
+          </div>
           <div class="details-card">
             <p class="details-card__label">Date</p>
             <p class="details-card__value">Sat, Oct 24, 2026</p>
