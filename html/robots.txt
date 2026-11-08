@@ -1,0 +1,5 @@
+# Rules for search engine crawlers. Cloudflare adds its own lines above these.
+User-agent: *
+Disallow: /admin
+
+Sitemap: https://frc8726.org/sitemap.xml

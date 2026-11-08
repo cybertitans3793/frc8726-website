@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- List of the site's pages for Google and other search engines.
+     Add a line here when you add a new page to the menu. -->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>https://frc8726.org/</loc></url>
+  <url><loc>https://frc8726.org/team</loc></url>
+  <url><loc>https://frc8726.org/robots</loc></url>
+  <url><loc>https://frc8726.org/sponsors</loc></url>
+  <url><loc>https://frc8726.org/outreach</loc></url>
+  <url><loc>https://frc8726.org/blog</loc></url>
+  <url><loc>https://frc8726.org/calendar</loc></url>
+  <url><loc>https://frc8726.org/contact</loc></url>
+  <url><loc>https://frc8726.org/join</loc></url>
+</urlset>

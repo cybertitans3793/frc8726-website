@@ -110,11 +110,15 @@ html/
 ├── contact.html        ← Contact form
 ├── join.html           ← Get Involved (students, mentors, sponsors)
 ├── xrp.html, lego.html ← Old fundraiser pages (not in the menu; flyer QR codes point here, don't delete)
+├── 404.html            ← "Page not found" page (links must start with /)
+├── sitemap.xml         ← Page list for Google — add new pages here too
+├── robots.txt          ← Rules for search engine crawlers
 ├── partials/
 │   ├── header.html     ← THE header + menu for every page
 │   └── footer.html     ← THE footer for every page
 └── assets/
     ├── style.css       ← Site-wide styles (colors, fonts, header, footer, buttons)
+    ├── fonts/          ← Norwester title font (stored here so it can't disappear)
     └── images/         ← Photos and logos, sorted into folders
 ```
 
@@ -142,7 +146,8 @@ Each page has an include line where the header/footer goes, e.g. `<!--#include v
 1. Copy an existing simple page (e.g. `calendar.html`) and rename it, e.g. `awards.html`
 2. Change the `<title>`, the description/`og:` lines, the page hero, and the content. Keep the two include lines
 3. Add a menu link in `partials/header.html` and a footer link in `partials/footer.html` (`href="/awards"` — no `.html`)
-4. Preview it, then commit and open a Pull Request as usual
+4. Add the page to `html/sitemap.xml` so Google finds it
+5. Preview it, then commit and open a Pull Request as usual
 
 ---
 

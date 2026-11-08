@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<!-- ================================================================
+     "PAGE NOT FOUND" PAGE  (shown for any address that doesn't exist)
+     ----------------------------------------------------------------
+     The web server shows this page whenever someone types or clicks a
+     link to a page that doesn't exist (for example frc8726.org/teem).
+
+     Because it can show up at ANY address, every link and file path on
+     this page must start with "/" (like /assets/style.css, not
+     assets/style.css), or it will break on deeper addresses.
+
+     HOW THIS PAGE IS BUILT
+       <head>       Page title and styles.
+       Header/footer  Shared by every page. Edit partials/header.html and
+                    partials/footer.html, not this file.
+       <main>       The message and buttons.
+     ================================================================ -->
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- Page title: shows in the browser tab. -->
+  <title>Page Not Found | CryptoHawks FRC 8726</title>
+  <!-- Tell search engines not to list this page. -->
+  <meta name="robots" content="noindex" />
+  <!-- Site-wide styles (shared by every page) -->
+  <link rel="stylesheet" href="/assets/style.css" />
+  <link rel="icon" href="/assets/images/hawk-logo.png" type="image/png" />
+
+  <!-- Styles for THIS page only -->
+  <style>
+    /* Space around the message */
+    .not-found {
+      padding: 4rem 0 6rem;
+      text-align: center;
+    }
+
+    .not-found p {
+      margin: 0 auto 2rem;
+      font-size: 1.05rem;
+      color: var(--dark-gray);
+    }
+
+    /* Row of buttons; wraps onto two lines on small phones */
+    .not-found__buttons {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ══ HEADER ══════════════════════════════════════════ -->
+  <!-- Shared header (logo + menu). To change it, edit partials/header.html -->
+  <!--#include virtual="/partials/header.html" -->
+
+  <!-- ══ PAGE HERO ════════════════════════════════════════ -->
+  <section class="page-hero">
+    <div class="container">
+      <p class="page-hero__label">Error 404</p>
+      <h1 class="page-hero__title">Page Not Found</h1>
+    </div>
+  </section>
+
+  <main>
+    <!-- ══ MESSAGE + BUTTONS ══════════════════════════════ -->
+    <section class="not-found">
+      <div class="container">
+        <p>Sorry, we couldn't find that page. It may have moved, or the address might have a typo.</p>
+        <div class="not-found__buttons">
+          <a href="/" class="btn btn--primary">Go to the Home Page</a>
+          <a href="/contact" class="btn btn--outline">Contact Us</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ══ FOOTER ═══════════════════════════════════════════ -->
+  <!-- Shared footer. To change it, edit partials/footer.html -->
+  <!--#include virtual="/partials/footer.html" -->
+
+</body>
+</html>

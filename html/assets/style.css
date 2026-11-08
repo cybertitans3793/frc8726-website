@@ -23,11 +23,14 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Exo:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap');
 
-/* ── Norwester via CDN ───────────────────────────────────── */
+/* ── Norwester (title font) ──────────────────────────────── */
+/* The font file is stored IN this site (assets/fonts/), not loaded
+   from another website, so it can't disappear on us.
+   Norwester by Jamie Wilson, free under the SIL Open Font License. */
 @font-face {
   font-family: 'Norwester';
-  src: url('https://cdn.jsdelivr.net/gh/jonathantneal/faux-web-fonts@master/fonts/norwester.woff2') format('woff2'),
-       url('https://fonts.cdnfonts.com/s/14611/norwester.woff') format('woff');
+  src: url('fonts/norwester.woff2') format('woff2'),
+       url('fonts/norwester.woff') format('woff');
   font-weight: normal;
   font-style: normal;
   font-display: swap;

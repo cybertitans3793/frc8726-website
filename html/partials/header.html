@@ -36,7 +36,9 @@
 
     <!-- "Hamburger" button (three lines). Only shows on phones/small screens.
          Clicking it opens and closes the menu. -->
-    <button class="nav-toggle" aria-label="Toggle navigation" onclick="toggleNav()">
+    <!-- aria-expanded tells screen readers whether the menu is open. -->
+    <button class="nav-toggle" aria-label="Toggle navigation" aria-controls="site-nav"
+            aria-expanded="false" onclick="toggleNav()">
       <span></span>
       <span></span>
       <span></span>
@@ -76,13 +78,15 @@
 
   // ── Open/close the menu on phones ────────────────────────────
   function toggleNav() {
-    document.getElementById('site-nav').classList.toggle('open');
+    var isOpen = document.getElementById('site-nav').classList.toggle('open');
+    document.querySelector('.nav-toggle').setAttribute('aria-expanded', isOpen);
   }
 
   // Close the phone menu after a link is tapped.
   document.querySelectorAll('.site-nav__link').forEach(function (link) {
     link.addEventListener('click', function () {
       document.getElementById('site-nav').classList.remove('open');
+      document.querySelector('.nav-toggle').setAttribute('aria-expanded', false);
     });
   });
 </script>
