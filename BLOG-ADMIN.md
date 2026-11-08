@@ -8,9 +8,11 @@ The blog is managed through a simple admin panel that lives at a private URL. Yo
 
 Go to: **[https://frc8726.org/admin](https://frc8726.org/admin)**
 
-This page is not linked from the public website. Keep the URL and password within the team.
+**Password:** ask Coach Holmes. This repo is public, so the password is never written here — please don't post it in GitHub, group chats, or anywhere online.
 
-**Password:** uhs8726
+Enter the password and click **Log in**. You'll stay logged in for about 8 hours on that device. When you're done, click **Log out** (top right), especially on a shared or school computer.
+
+If you type the wrong password 5 times, the login locks for 15 minutes.
 
 ---
 
@@ -19,9 +21,6 @@ This page is not linked from the public website. Keep the URL and password withi
 Once you're on the admin page, fill out the form:
 
 ### Fields
-
-**Password**
-Enter the team blog password before submitting. The post won't publish without it.
 
 **Title**
 The headline of your post. Keep it clear and descriptive.
@@ -40,7 +39,10 @@ The body of your post. Write in plain text — paragraphs will be preserved. You
 - `<b>bold text</b>` → **bold text**
 - `<i>italic text</i>` → *italic text*
 - `<br>` → line break
+- `<p>...</p>` → paragraph
 - `<a href="https://example.com">link text</a>` → clickable link
+
+Any other HTML (scripts, images, embeds, styles) is removed automatically when you publish.
 
 Keep posts between 150–500 words for readability. Shorter is usually better.
 
@@ -57,7 +59,7 @@ Hit **Publish Post** when you're done.
 ## After Publishing
 
 Your post will:
-1. Appear immediately on the blog page at `frc8726.org/blog.html`
+1. Appear immediately on the blog page at `frc8726.org/blog`
 2. Show up in the post list at the bottom of the admin panel
 3. Have its own page at `frc8726.org/blog/posts/YYYY-MM-DD-your-title.html`
 
@@ -67,7 +69,7 @@ No approval needed — posts go live instantly. Write responsibly.
 
 ## Deleting a Post
 
-Scroll to the bottom of the admin page to see all existing posts. Each one has a password field and a Delete button. Enter the blog password and click Delete to remove a post permanently.
+While logged in, scroll to the bottom of the admin page to see all existing posts. Click **Delete** next to a post and confirm to remove it permanently.
 
 **Deletion cannot be undone.** The post file and photo are both removed.
 
