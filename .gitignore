@@ -3,3 +3,6 @@
 html/blog/posts.json
 html/blog/posts/
 html/assets/images/blog/
+
+# Deploy log is written on the server, not tracked here.
+deploy.log

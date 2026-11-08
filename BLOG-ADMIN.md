@@ -107,4 +107,4 @@ The blog is public — sponsors, parents, judges, and potential new members read
 
 ---
 
-*Blog admin powered by a Flask app running on the CryptoHawks OrangePi5 home server.*
+*Blog admin powered by a Flask app running on the CryptoHawks home server (pimedia).*

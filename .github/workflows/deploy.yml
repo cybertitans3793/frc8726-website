@@ -1,4 +1,4 @@
-name: Deploy to OrangePi5
+name: Deploy to pimedia
 
 on:
   push:
@@ -9,6 +9,18 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: Trigger deploy webhook
+      - name: Trigger signed deploy webhook
+        env:
+          SECRET: ${{ secrets.DEPLOY_WEBHOOK_SECRET }}
         run: |
-          curl -X POST https://deploy.frc8726.org/hooks/deploy-website
+          if [ -z "$SECRET" ]; then
+            echo "::error::DEPLOY_WEBHOOK_SECRET is not set in repo Settings → Secrets and variables → Actions"
+            exit 1
+          fi
+          body='{"ref":"${{ github.ref }}","sha":"${{ github.sha }}"}'
+          sig="sha256=$(printf '%s' "$body" | openssl dgst -sha256 -hmac "$SECRET" | sed 's/^.* //')"
+          curl -fsS -X POST \
+            -H "Content-Type: application/json" \
+            -H "X-Hub-Signature-256: $sig" \
+            --data "$body" \
+            https://deploy.frc8726.org/hooks/deploy-website

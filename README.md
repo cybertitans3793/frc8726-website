@@ -118,12 +118,19 @@ For the curious — here's what happens when Coach Holmes merges a PR:
 
 1. GitHub detects a push to `main`
 2. GitHub Actions automatically runs the deploy workflow (`.github/workflows/deploy.yml`)
-3. The workflow calls a webhook on the team's OrangePi5 home server
-4. The Pi pulls the latest code from GitHub
-5. Nginx (the web server) restarts with the new files
+3. The workflow sends a **signed** request to a webhook on the team's home server (pimedia)
+4. The server checks the signature, then pulls the latest code from GitHub
+5. Nginx (the web server) serves the new files immediately — no restart, no downtime
 6. The live site updates — usually within 30 seconds of merging
 
-The server runs at home on an OrangePi5 and is accessible worldwide via Cloudflare Tunnel at `frc8726.org`.
+The server runs at home and is accessible worldwide via Cloudflare Tunnel at `frc8726.org`.
+
+#### Deploy security (for admins)
+
+- The webhook only deploys when the request is signed with a shared secret (HMAC-SHA256). Requests without a valid signature are rejected, so nobody else can trigger deploys.
+- The secret lives in two places: the repo's **Settings → Secrets and variables → Actions** as `DEPLOY_WEBHOOK_SECRET`, and in the webhook config on the server. If you rotate it, update both.
+- The deploy script lives on the server, **not in this repo**, on purpose: the webhook runs with admin rights, so merging a PR must never be able to change what it runs.
+- If a deploy fails, check the **Actions** tab on GitHub — a red ❌ on "Deploy to pimedia" usually means the secret is missing or doesn't match.
 
 ---
 
