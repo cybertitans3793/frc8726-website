@@ -5,33 +5,19 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>LEGO Sumo — CryptoHawks Fundraiser | CryptoHawks FRC 8726</title>
   <meta name="description" content="LEGO Sumo: CryptoHawks FRC 8726's LEGO robotics fundraiser for grades 3-5. Build and battle your own LEGO Sumo robot — Sat, Oct 17, 2026 at Urbana High School." />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="CryptoHawks FRC 8726" />
+  <meta property="og:title" content="LEGO Sumo — CryptoHawks Fundraiser | CryptoHawks FRC 8726" />
+  <meta property="og:description" content="LEGO Sumo: CryptoHawks FRC 8726&#x27;s LEGO robotics fundraiser for grades 3-5. Build and battle your own LEGO Sumo robot — Sat, Oct 17, 2026 at Urbana High School." />
+  <meta property="og:url" content="https://frc8726.org/lego" />
+  <meta property="og:image" content="https://frc8726.org/assets/images/fundraisers/lego-sumo-hero.jpg" />
+  <meta property="og:image:alt" content="LEGO Sumo robotics camp" />
+  <meta name="twitter:card" content="summary_large_image" />
   <link rel="stylesheet" href="assets/style.css" />
   <link rel="icon" href="assets/images/hawk-logo.png" type="image/png" />
 
   <style>
     /* ── Intro ── */
-    .fundraiser-hero-band {
-      padding: 3.5rem 0 4rem;
-    }
-
-    .fundraiser-hero-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 3.5rem;
-      align-items: center;
-    }
-
-    .fundraiser-hero-text .section-label {
-      color: var(--dark-gray);
-    }
-
-    .fundraiser-hero-text p {
-      color: var(--dark-gray);
-      font-size: 1.05rem;
-      max-width: none;
-      margin-bottom: 1rem;
-    }
-
     .fundraiser-hero-photo {
       border-radius: var(--radius);
       overflow: hidden;
@@ -45,108 +31,7 @@
       display: block;
     }
 
-    /* ── Event details grid ── */
-    .details-section {
-      padding: 3rem 0 4rem;
-      border-top: 1px solid #e2e2ea;
-    }
-
-    .details-grid {
-      display: grid;
-      grid-template-columns: repeat(5, 1fr);
-      gap: 1.5rem;
-      margin-top: 1.5rem;
-    }
-
-    .details-card {
-      background: var(--white);
-      border: 1px solid #e2e2ea;
-      border-radius: var(--radius);
-      padding: 1.75rem 1.25rem;
-      text-align: center;
-    }
-
-    .details-card__label {
-      font-family: var(--font-body);
-      font-size: 0.75rem;
-      font-weight: 700;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: var(--urbana-gray);
-      margin-bottom: 0.5rem;
-    }
-
-    .details-card__value {
-      font-family: var(--font-title);
-      font-size: 1.3rem;
-      color: var(--urbana-blue);
-      line-height: 1.25;
-    }
-
-    .details-card__note {
-      display: block;
-      font-family: var(--font-body);
-      font-size: 0.78rem;
-      font-weight: 500;
-      color: var(--dark-gray);
-      margin-top: 0.2rem;
-    }
-
-    /* ── Register / QR band ── */
-    .register-band {
-      background: var(--urbana-blue);
-      border-radius: var(--radius);
-      padding: 3rem;
-      margin: 1rem 0 4rem;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 3rem;
-    }
-
-    .register-band__qr {
-      background: var(--white);
-      border-radius: 10px;
-      padding: 0.85rem;
-      flex-shrink: 0;
-    }
-
-    .register-band__qr img {
-      width: 140px;
-      height: 140px;
-      display: block;
-    }
-
-    .register-band__text {
-      text-align: left;
-    }
-
-    .register-band__kicker {
-      font-size: 0.8rem;
-      font-weight: 700;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--light-gray);
-      margin-bottom: 0.35rem;
-    }
-
-    .register-band__headline {
-      color: var(--white);
-      font-size: clamp(1.5rem, 3vw, 2.1rem);
-      margin-bottom: 0.5rem;
-    }
-
-    .register-band__note {
-      color: var(--light-gray);
-      font-size: 0.95rem;
-      max-width: 40ch;
-    }
-
     /* ── Registration form ── */
-    .form-section {
-      padding: 0 0 5rem;
-    }
-
     .form-wrap {
       background: var(--white);
       border: 1px solid #e2e2ea;
@@ -161,27 +46,6 @@
       min-height: 1311px;
       border: none;
       display: block;
-    }
-
-    /* ── FCPS sponsor note ── */
-    .fcps-note {
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-      justify-content: center;
-      padding: 2rem 0 4rem;
-      border-top: 1px solid #e2e2ea;
-    }
-
-    .fcps-note img {
-      height: 40px;
-      width: auto;
-    }
-
-    .fcps-note p {
-      font-size: 0.85rem;
-      color: var(--urbana-gray);
-      max-width: none;
     }
 
     @media (max-width: 860px) {
@@ -251,8 +115,6 @@
         <a href="robots"   class="site-nav__link">Robots</a>
         <a href="sponsors" class="site-nav__link">Sponsors</a>
         <a href="outreach" class="site-nav__link">Outreach</a>
-        <a href="xrp"      class="site-nav__link">XRP</a>
-        <a href="lego"     class="site-nav__link active">LEGO</a>
         <a href="blog"     class="site-nav__link">Blog</a>
         <a href="calendar" class="site-nav__link">Calendar</a>
         <a href="contact"  class="site-nav__link">Contact</a>
@@ -390,8 +252,6 @@
         <a href="robots">Robots</a>
         <a href="sponsors">Sponsors</a>
         <a href="outreach">Outreach</a>
-        <a href="xrp">XRP</a>
-        <a href="lego">LEGO</a>
         <a href="blog">Blog</a>
         <a href="calendar">Calendar</a>
         <a href="contact">Contact</a>
@@ -411,7 +271,7 @@
 
     <div class="container">
       <div class="footer-bottom">
-        <p>&copy; 2024 CryptoHawks FRC 8726 · Urbana High School</p>
+        <p>&copy; 2026 CryptoHawks FRC 8726 · Urbana High School</p>
         <p>Built by the CryptoHawks Partner Relations Sub-Team</p>
       </div>
     </div>
