@@ -1,0 +1,88 @@
+<!-- ==========================================================
+     SHARED HEADER  (partials/header.html)
+     ----------------------------------------------------------
+     This ONE file is the header (logo + menu) for EVERY page.
+     Change it here and every page on the site updates.
+
+     How it gets onto each page: every page has an "include"
+     line that names this file (search the page for
+     partials/header.html). The web server pastes this file in
+     at that spot before sending the page to the visitor.
+
+     Styles for the header are in assets/style.css, in the
+     "HEADER" section.
+
+     ADDING A PAGE TO THE MENU:
+       1. Copy one of the <a> lines below.
+       2. Change the href (page name WITHOUT .html, starting with /)
+          and the text between > and <.
+       3. Also add it to partials/footer.html under "Navigate".
+
+     Links must start with "/" (like /team, not team) so they
+     work from every folder, including blog posts.
+     ========================================================== -->
+<header class="site-header">
+  <div class="container">
+
+    <!-- Logo + team name (top left). Clicking it goes to the home page. -->
+    <a href="/" class="header-brand">
+      <img src="/assets/images/hawk-logo.png" alt="CryptoHawks Logo" class="header-brand__logo"
+           onerror="this.style.display='none'" />
+      <div class="header-brand__text">
+        <span class="header-brand__name">CryptoHawks</span>
+        <span class="header-brand__number">FRC Team 8726</span>
+      </div>
+    </a>
+
+    <!-- "Hamburger" button (three lines). Only shows on phones/small screens.
+         Clicking it opens and closes the menu. -->
+    <button class="nav-toggle" aria-label="Toggle navigation" onclick="toggleNav()">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+
+    <!-- The menu. You do NOT need to mark the current page as "active";
+         the script below does it automatically. -->
+    <nav class="site-nav" id="site-nav">
+      <a href="/"         class="site-nav__link">Home</a>
+      <a href="/team"     class="site-nav__link">Team</a>
+      <a href="/robots"   class="site-nav__link">Robots</a>
+      <a href="/sponsors" class="site-nav__link">Sponsors</a>
+      <a href="/outreach" class="site-nav__link">Outreach</a>
+      <a href="/blog"     class="site-nav__link">Blog</a>
+      <a href="/calendar" class="site-nav__link">Calendar</a>
+      <a href="/contact"  class="site-nav__link">Contact</a>
+      <!-- The extra "cta" class makes this one look like a white button. -->
+      <a href="/join"     class="site-nav__link site-nav__link--cta">Get Involved</a>
+    </nav>
+
+  </div>
+</header>
+
+<script>
+  // ── Highlight the menu link for the page you are on ──────────
+  // Looks at the address bar (for example "/team") and adds the
+  // "active" class to the menu link with the same href.
+  // Blog posts (/blog/posts/...) highlight "Blog".
+  (function () {
+    var path = location.pathname.replace(/\.html$/, '').replace(/\/index$/, '/');
+    if (path.length > 1) path = path.replace(/\/$/, '');
+    if (path.indexOf('/blog/') === 0) path = '/blog';
+    document.querySelectorAll('#site-nav a').forEach(function (link) {
+      if (link.getAttribute('href') === path) link.classList.add('active');
+    });
+  })();
+
+  // ── Open/close the menu on phones ────────────────────────────
+  function toggleNav() {
+    document.getElementById('site-nav').classList.toggle('open');
+  }
+
+  // Close the phone menu after a link is tapped.
+  document.querySelectorAll('.site-nav__link').forEach(function (link) {
+    link.addEventListener('click', function () {
+      document.getElementById('site-nav').classList.remove('open');
+    });
+  });
+</script>

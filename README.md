@@ -56,6 +56,7 @@ You now have a local copy of the website on your computer.
 - Website files are in the `html/` folder
 - Edit what you need to edit
 - Save your files
+- **Check it in your browser** before committing (see [Previewing](#previewing-your-changes) below)
 
 **Step 4 — Commit your changes**
 - Go back to GitHub Desktop
@@ -80,20 +81,74 @@ You now have a local copy of the website on your computer.
 
 ---
 
+### Previewing Your Changes
+
+Don't double-click the `.html` files — they will open **without the header and footer** (see below for why). Instead:
+
+1. Open a terminal in the `frc8726-website` folder (in VS Code: **Terminal → New Terminal**)
+2. Run `python preview.py` (on a Mac or if that fails: `python3 preview.py`)
+3. Your browser opens **http://localhost:8000** — that's your copy of the site
+4. Edit, save, and refresh the browser to see changes
+5. Press **Ctrl+C** in the terminal when you're done
+
+You need Python 3 (free from python.org, or the Microsoft Store on Windows). The blog list will say it can't load posts — that's normal in preview, the posts only exist on the real server.
+
+---
+
 ### File Structure
 
 ```
+preview.py              ← Run this to preview the site on your computer
 html/
 ├── index.html          ← Home page
-├── calendar.html       ← Team calendar
-├── contact.html        ← Contact / Join Us
+├── team.html           ← Team / sub-teams
+├── robots.html         ← Robots, newest first
+├── sponsors.html       ← Sponsor logos by tier
+├── outreach.html       ← Outreach programs
+├── blog.html           ← Blog list (posts are made in the admin page, not here)
+├── calendar.html       ← Embedded Google Calendar
+├── contact.html        ← Contact form
+├── join.html           ← Get Involved (students, mentors, sponsors)
+├── xrp.html, lego.html ← Old fundraiser pages (not in the menu; flyer QR codes point here, don't delete)
+├── partials/
+│   ├── header.html     ← THE header + menu for every page
+│   └── footer.html     ← THE footer for every page
 └── assets/
-    ├── style.css       ← All styles (colors, fonts, layout)
-    └── images/
-        └── hawk-logo.png
+    ├── style.css       ← Site-wide styles (colors, fonts, header, footer, buttons)
+    └── images/         ← Photos and logos, sorted into folders
 ```
 
-**Important:** If you add a new page, make sure to add it to the navigation in `style.css` and link it from every other page's `<nav>` section.
+Every page starts with a comment explaining what's on it and how to change common things. Read it first!
+
+---
+
+### The Header and Footer (shared by every page)
+
+The header (logo + menu) and footer are each in **one file**:
+
+- `html/partials/header.html`
+- `html/partials/footer.html`
+
+Each page has an include line where the header/footer goes, e.g. `<!--#include virtual="/partials/header.html" -->`. The web server replaces that line with the file's contents before sending the page. **Change the partial once and every page updates.** Don't delete or edit the include lines.
+
+- **Header/footer look** (colors, sizes): `assets/style.css`, sections **HEADER / NAV** and **FOOTER**
+- **Current-page highlight** in the menu happens automatically — you don't need to do anything
+- **Links in the partials start with `/`** (e.g. `/team`) so they work from every page, including blog posts
+
+---
+
+### Adding a New Page
+
+1. Copy an existing simple page (e.g. `calendar.html`) and rename it, e.g. `awards.html`
+2. Change the `<title>`, the description/`og:` lines, the page hero, and the content. Keep the two include lines
+3. Add a menu link in `partials/header.html` and a footer link in `partials/footer.html` (`href="/awards"` — no `.html`)
+4. Preview it, then commit and open a Pull Request as usual
+
+---
+
+### Photos
+
+Resize photos to about **1600px wide** and remove location data before adding them. Phone photos are huge (5–10 MB) and often contain GPS coordinates of where they were taken. Ask a mentor if you're not sure how.
 
 ---
 

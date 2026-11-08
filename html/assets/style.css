@@ -2,6 +2,23 @@
    CryptoHawks FRC 8726 — style.css
    Brand Kit: Urbana Blue #04003b | White #ffffff
    Fonts: Norwester (titles), Exo (body)
+
+   This file styles EVERY page. Styles for just one page live in
+   that page's own <style> block instead.
+
+   QUICK GUIDE — where to change common things:
+     Team colors, fonts, header height ... "CSS Variables" (just below)
+     Header / menu look ................... "HEADER / NAV"
+     Footer look .......................... "FOOTER"
+     Phone / small-screen layout .......... "RESPONSIVE" (near the bottom)
+     XRP / LEGO event pages ............... last section
+
+   TIP: change a color in "CSS Variables" and it changes everywhere
+   that color is used. Example: var(--urbana-blue) means "use the
+   color stored in --urbana-blue".
+
+   The HTML for the header and footer is in partials/header.html
+   and partials/footer.html.
    ============================================================ */
 
 @import url('https://fonts.googleapis.com/css2?family=Exo:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap');
@@ -17,6 +34,8 @@
 }
 
 /* ── CSS Variables (Brand Kit) ───────────────────────────── */
+/* Named values used all over the site. Change one here and it
+   updates everywhere. Colors are hex codes (#rrggbb). */
 :root {
   --urbana-blue:   #04003b;
   --blue-alt:      #0b3562;
@@ -133,6 +152,11 @@ p {
 }
 
 /* ── Header / Nav ────────────────────────────────────────── */
+/* The bar across the top of every page (HTML: partials/header.html).
+   Background color = --urbana-blue, height = --nav-height (both in
+   CSS Variables above). It stays stuck to the top while scrolling
+   ("position: sticky").
+   The phone version (hamburger menu) is in RESPONSIVE below. */
 .site-header {
   position: sticky;
   top: 0;
@@ -150,7 +174,7 @@ p {
   gap: 1rem;
 }
 
-/* Logo lockup */
+/* Logo + "CryptoHawks / FRC Team 8726" text, top left */
 .header-brand {
   display: flex;
   align-items: center;
@@ -190,7 +214,7 @@ p {
   text-transform: uppercase;
 }
 
-/* Nav */
+/* Menu links (Home, Team, Robots...) */
 .site-nav {
   display: flex;
   align-items: center;
@@ -217,7 +241,9 @@ p {
   background: rgba(255,255,255,0.08);
 }
 
-/* Active page highlight */
+/* The link for the page you are on (added automatically by the
+   script in partials/header.html). The ::after part draws the
+   small white underline. */
 .site-nav__link.active {
   color: var(--white);
   background: rgba(255,255,255,0.14);
@@ -234,7 +260,8 @@ p {
   border-radius: 2px;
 }
 
-/* Get Involved CTA button */
+/* "Get Involved" white button at the end of the menu.
+   CTA = "call to action". */
 .site-nav__link--cta {
   background: var(--white);
   color: var(--urbana-blue) !important;
@@ -256,7 +283,8 @@ p {
   display: none;
 }
 
-/* Hamburger (mobile) */
+/* Hamburger button (three lines). Hidden on big screens; shown on
+   phones by the RESPONSIVE section below. */
 .nav-toggle {
   display: none;
   flex-direction: column;
@@ -429,6 +457,11 @@ p {
 }
 
 /* ── Footer ──────────────────────────────────────────────── */
+/* The bottom of every page (HTML: partials/footer.html).
+   Three columns on big screens: team name | Navigate | Contact.
+   "grid-template-columns: 1.5fr 1fr 1fr" means the first column is
+   1.5x as wide as the other two. On phones it becomes one column
+   (see RESPONSIVE below). */
 .site-footer {
   background: var(--urbana-blue);
   color: var(--light-gray);
@@ -484,6 +517,7 @@ p {
   color: var(--white);
 }
 
+/* Copyright line at the very bottom */
 .footer-bottom {
   padding-top: 1.5rem;
   display: flex;
@@ -500,6 +534,10 @@ p {
 }
 
 /* ── Responsive ──────────────────────────────────────────── */
+/* Rules inside "@media (max-width: 900px)" only apply when the
+   screen is 900px wide or less (tablets and phones). Here the
+   menu turns into a drop-down opened by the hamburger button,
+   and the footer stacks into one column. */
 @media (max-width: 900px) {
   .site-nav {
     display: none;
@@ -516,6 +554,7 @@ p {
     box-shadow: 0 8px 24px rgba(0,0,0,0.3);
   }
 
+  /* "open" is added/removed by toggleNav() in partials/header.html */
   .site-nav.open {
     display: flex;
   }
@@ -560,6 +599,7 @@ p {
   }
 }
 
+/* Small phones (600px wide or less): a bit less padding */
 @media (max-width: 600px) {
   .section {
     padding: 3rem 0;

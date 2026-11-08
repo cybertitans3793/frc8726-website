@@ -6,3 +6,4 @@ html/assets/images/blog/
 
 # Deploy log is written on the server, not tracked here.
 deploy.log
+__pycache__/
